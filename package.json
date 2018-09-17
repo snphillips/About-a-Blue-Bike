@@ -1,0 +1,23 @@
+{
+  "name": "bluebike",
+  "version": "1.0.0",
+  "description": "",
+    "engines": {
+    "node": "10.10.0"
+  },
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snphillips/bluebike.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/snphillips/bluebike/issues"
+  },
+  "homepage": "https://github.com/snphillips/bluebike#readme"
+}
