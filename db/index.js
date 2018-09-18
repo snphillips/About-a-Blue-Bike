@@ -27,6 +27,7 @@ if (process.env.NODE_ENV === 'production'){
   let{ user, host, database, password, port} = require("../secrets/db_configuration");
   pool = new Pool({ user, host, database, password, port });
 };
+
 module.exports = pool;
 
 
