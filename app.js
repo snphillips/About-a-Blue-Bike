@@ -32,11 +32,8 @@ app.use(bodyParser.json());
 
 // console.logs a bunch of rows of data
 pool.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  pool.end();
+  if (err) return console.log(err);
+  console.log(res);
 });
 
 
