@@ -33,13 +33,14 @@ const server = http.createServer((req, res) => {
 });
 
 
-// pool.query('SELECT * FROM citibike_rides LIMIT 5;', (err, res) => {
-//   if (err) throw err;
-//   for (let row of res.rows) {
-//     console.log(JSON.stringify(row));
-//   }
-//   pool.end();
-// });
+// console.logs a bunch of rows of data
+pool.query('SELECT * FROM citibike_rides LIMIT 5;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  pool.end();
+});
 
 
 
