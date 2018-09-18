@@ -1,12 +1,14 @@
 //  express is the library that makes this all possible
 const express = require('express');
 const pool = require('./db');
+
+
 //  Invoke express. Henseforth, app = express
 const app = express();
 
-app.get('/', (req, res) => {});
 
-const http = require('http');
+
+// const http = require('http');
 
 // Database connections
 // const { Pool } = require('pg');
@@ -31,16 +33,13 @@ app.use(bodyParser.json());
 
 
 
-
-
-
-// console.logs a bunch of rows of data
-pool.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
+app.get('/', (request, response) => {
+  pool.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
   if (err) return console.log(err);
-  console.log(res);
+  console.log("bike trips!!!!!!");
+  console.log(res.rows);
+  });
 });
-
-
 
 
  module.exports = app;

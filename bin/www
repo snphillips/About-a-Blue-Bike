@@ -6,14 +6,6 @@
 
 const app = require('../app');
 
-const hostname = 'localhost';
-const http = require('http');
-const server = http.createServer((req, res) => {
-  // res.statusCode = 200;
-  // res.setHeader('Content-Type', 'text/plain');
-  res.end("Hello World. Let's go on a bike ride.");
-  // const { url } = req;
-});
 
 // Dynamic Port Binding
 // Heroku sets its own PORT through an environment variable.
@@ -21,8 +13,8 @@ const server = http.createServer((req, res) => {
 // this environment variable first, and falling back to 4000 if it’s not set.
 const PORT = process.env.PORT || 4000;
 
-server.listen(PORT, () => {
-  console.log(`Listening on ${hostname} at port ${PORT}. Let's ride!`)
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}. Let's ride!`)
   console.log(`Database URL is: ${process.env.DATABASE_URL}.`)
   console.log(`Development or Production?: ${process.env.NODE_ENV}.`)
 });
