@@ -1,12 +1,14 @@
-const express = require("express");
+const { Router } = require("express");
+// const express = require("express");
 const pool = require("../db");
-const router = express.Router();
+// const router = express.Router();
+const router = Router();
 
 
-/* GET all trips. Max 10 for now */
+/* GET all trips. Max 5 for now */
 router.get("/", (request, response, next) => {
   pool.query(
-    "SELECT * FROM citibike_rides ORDER BY bikeid ASC LIMIT 100;",
+    "SELECT * FROM citibike_rides ORDER BY bikeid ASC LIMIT 5;",
     (err, res) => {
      console.log(err)
       if (err) return next(err);

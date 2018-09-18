@@ -8,15 +8,6 @@ const app = express();
 
 
 
-// const http = require('http');
-
-// Database connections
-// const { Pool } = require('pg');
-// const pool = new Pool({
-  // connectionString: process.env.DATABASE_URL,
-  // ssl: true,
-// });
-
 pool.connect();
 const { DATABASE_URL } = process.env;
 
