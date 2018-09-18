@@ -33,28 +33,16 @@ const server = http.createServer((req, res) => {
 });
 
 
-pool.query('SELECT * FROM citibike_rides LIMIT 5;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  pool.end();
-});
-
-
-
-
-// router.get("/", (request, response, next) => {
-//   pool.query(
-//     "SELECT * FROM citibike_rides ORDER BY bikeid ASC LIMIT 10;",
-//     (err, res) => {
-//      console.log(err)
-//       if (err) return next(err);
-
-//       response.json(res.rows);
-//     }
-//   );
+// pool.query('SELECT * FROM citibike_rides LIMIT 5;', (err, res) => {
+//   if (err) throw err;
+//   for (let row of res.rows) {
+//     console.log(JSON.stringify(row));
+//   }
+//   pool.end();
 // });
+
+
+
 
 
 server.listen(PORT, () => {
