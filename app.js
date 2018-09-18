@@ -1,12 +1,14 @@
 const http = require('http');
-const { Pool } = require('pg');
 
+// Database connections
+const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   // ssl: true,
 });
 
 pool.connect();
+const { DATABASE_URL } = process.env;
 
 
 //  express is the library that makes this all possible
@@ -23,18 +25,11 @@ app.use(bodyParser.json());
 // app.use('/', routes);
 
 
-const PORT = process.env.PORT || 4000;
-const { DATABASE_URL } = process.env;
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end("Hello World");
-});
 
 
 // console.logs a bunch of rows of data
-pool.query('SELECT * FROM citibike_rides LIMIT 5;', (err, res) => {
+pool.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
   if (err) throw err;
   for (let row of res.rows) {
     console.log(JSON.stringify(row));
@@ -45,8 +40,4 @@ pool.query('SELECT * FROM citibike_rides LIMIT 5;', (err, res) => {
 
 
 
-
-server.listen(PORT, () => {
-  console.log(`Server running on ${PORT}. Let's ride!`);
-  console.log(`Database URL is: ${process.env.DATABASE_URL}.`)
-});
+ module.exports = app;

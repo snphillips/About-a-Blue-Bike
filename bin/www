@@ -1,0 +1,28 @@
+#!/user/bin/env node
+//  Why this file? It removes all the create and start server code from
+//  your server.js and let you focus only on the application logic part.
+//  So you can require('./app') from external files and get the express
+//  app that is not listening on any port (think unit tests and the like).
+
+const app = require('../app');
+
+
+const http = require('http');
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end("Hello World. Let's go on a bike ride.");
+});
+
+// Dynamic Port Binding
+// Heroku sets its own PORT through an environment variable.
+// "process.env.PORT" allows platform control the port by looking for
+// this environment variable first, and falling back to 4000 if it’s not set.
+const PORT = process.env.PORT || 4000;
+
+server.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}. Let's ride!`)
+  console.log(`Database URL is: ${process.env.DATABASE_URL}.`)
+  console.log(`Development or Production?: ${process.env.NODE_ENV}.`)
+});
+
