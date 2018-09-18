@@ -12,7 +12,7 @@ pool.connect();
 //  express is the library that makes this all possible
 const express = require('express');
 const bodyParser = require('body-parser');
-const routes = require('./routes');
+// const routes = require('./routes');
 const cors = require('cors');
 
 //  Invoke express. Henseforth, app = express
@@ -20,7 +20,7 @@ const app = express();
 
 app.use(bodyParser.json());
 // app.use(cors({ origin, credentials: true }));
-app.use('/', routes);
+// app.use('/', routes);
 
 
 const PORT = process.env.PORT || 4000;
