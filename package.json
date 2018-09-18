@@ -33,5 +33,11 @@
   "engines": {
     "node": "10.4.0",
     "npm": "6.4.0"
-  }
+  },
+  "addons": [{
+   "plan": "heroku-postgresql:hobby-basic",
+   "options": {
+     "version": "10.5"
+   }
+}]
 }
