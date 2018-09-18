@@ -28,6 +28,8 @@ app.use(bodyParser.json());
 
 
 
+
+
 // console.logs a bunch of rows of data
 pool.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
   if (err) throw err;
