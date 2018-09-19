@@ -12,11 +12,6 @@ let pool = new Pool({
 
 
 
-
-
-
-
-
 // production
 if (process.env.NODE_ENV === 'production'){
   console.log("production taco NODE_ENV:", process.env.NODE_ENV)
