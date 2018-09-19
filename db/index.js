@@ -21,8 +21,7 @@ let pool = new Pool({
 if (process.env.NODE_ENV === 'production'){
   console.log("production taco NODE_ENV:", process.env.NODE_ENV)
   connectionString = process.env.DATABASE_URL
-  // pool = new Pool(connectionString);
-  pool = new Pool({ user, host, database, password, port });
+  pool = new Pool(connectionString);
 
 
 } else {
