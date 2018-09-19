@@ -4,25 +4,33 @@ const pool = require('./db');
 
 
 // *************************************
-// Heroku instructions:
-// Then, connect to process.env.DATABASE_URL when your app initializes:
-const { Client } = require('pg');
-
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
-
-client.connect();
-
-client.query('SELECT * FROM citibike_rides LIMIT 2;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
 // *************************************
+
+// Heroku instructions
+// Not helping my problem. I get an ssl error
+
+// const { Client } = require('pg');
+
+// const client = new Client({
+//   connectionString: process.env.DATABASE_URL,
+//   ssl: true,
+// });
+
+// client.connect();
+
+// client.query('SELECT * FROM citibike_rides LIMIT 2;', (err, res) => {
+//   if (err) throw err;
+//   for (let row of res.rows) {
+//     console.log(JSON.stringify(row));
+//   }
+//   client.end();
+// });
+// *************************************
+// *************************************
+
+
+
+
 
 
 
