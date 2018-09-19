@@ -8,7 +8,8 @@ const app = require('../app');
 
 const express = require('express');
 
-
+//  From Heroku instructions
+// https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
 // *****************
 const { Client } = require('pg');
 
