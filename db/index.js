@@ -21,8 +21,9 @@ let pool = new Pool({
 if (process.env.NODE_ENV === 'production'){
   console.log("production taco NODE_ENV:", process.env.NODE_ENV)
   connectionString = process.env.DATABASE_URL
-  pool = new Pool(connectionString);
-  pool.connect();
+  // pool = new Pool(connectionString);
+  pool = new Pool({ user, host, database, password, port });
+
 
 } else {
 
@@ -30,7 +31,7 @@ if (process.env.NODE_ENV === 'production'){
   console.log("development taco NODE_ENV:", process.env.NODE_ENV)
   let{ user, host, database, password, port} = require("../secrets/db_configuration");
   pool = new Pool({ user, host, database, password, port });
-  pool.connect();
+
 };
 
 module.exports = pool;
