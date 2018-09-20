@@ -28,17 +28,32 @@ let pool = new Pool({
 
 // };
 
-// Production
-if (process.env.NODE_ENV == 'development'){
-  console.log("NODE_ENV?:", process.env.NODE_ENV)
+// // Development
+// if (process.env.NODE_ENV == 'development'){
+//   console.log("NODE_ENV?:", process.env.NODE_ENV)
+//   let{ user, host, database, password, port} = require("../secrets/db_configuration");
+//   pool = new Pool({ user, host, database, password, port });
+
+
+// } else {
+
+//   // Production
+//   console.log("NODE_ENV?:", process.env.NODE_ENV)
+//   connectionString = process.env.DATABASE_URL;
+//   pool = new Pool(connectionString);
+
+// };
+// Development
+if (process.env.MODE == 'development'){
+  console.log("MODE?:", process.env.MODE)
   let{ user, host, database, password, port} = require("../secrets/db_configuration");
   pool = new Pool({ user, host, database, password, port });
 
 
 } else {
 
-  // Local Development
-  console.log("NODE_ENV?:", process.env.NODE_ENV)
+  // Production
+  console.log("MODE?:", process.env.MODE)
   connectionString = process.env.DATABASE_URL;
   pool = new Pool(connectionString);
 
