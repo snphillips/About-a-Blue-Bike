@@ -32,6 +32,9 @@ client.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
 
 
 
+
+
+
 // Dynamic Port Binding
 // Heroku sets its own PORT through an environment variable.
 // "process.env.PORT" allows platform control the port by looking for

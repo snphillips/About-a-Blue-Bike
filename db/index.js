@@ -12,19 +12,35 @@ let pool = new Pool({
 
 
 
-// production
-if (process.env.NODE_ENV == 'production'){
-  console.log("production NODE_ENV:", process.env.NODE_ENV)
-  connectionString = process.env.DATABASE_URL
-  pool = new Pool(connectionString);
+// // Production
+// if (process.env.NODE_ENV == 'production'){
+//   console.log("NODE_ENV?:", process.env.NODE_ENV)
+//   connectionString = process.env.DATABASE_URL;
+//   pool = new Pool(connectionString);
+
+
+// } else {
+
+//   // Local Development
+//   console.log("NODE_ENV?:", process.env.NODE_ENV)
+//   let{ user, host, database, password, port} = require("../secrets/db_configuration");
+//   pool = new Pool({ user, host, database, password, port });
+
+// };
+
+// Production
+if (process.env.NODE_ENV == 'development'){
+  console.log("NODE_ENV?:", process.env.NODE_ENV)
+  let{ user, host, database, password, port} = require("../secrets/db_configuration");
+  pool = new Pool({ user, host, database, password, port });
 
 
 } else {
 
-  // local development
-  console.log("development NODE_ENV:", process.env.NODE_ENV)
-  let{ user, host, database, password, port} = require("../secrets/db_configuration");
-  pool = new Pool({ user, host, database, password, port });
+  // Local Development
+  console.log("NODE_ENV?:", process.env.NODE_ENV)
+  connectionString = process.env.DATABASE_URL;
+  pool = new Pool(connectionString);
 
 };
 
