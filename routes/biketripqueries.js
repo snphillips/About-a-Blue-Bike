@@ -10,7 +10,7 @@ const router = Router();
 /* GET all trips. Max 5 for now */
 router.get("/", (request, response, next) => {
   pool.query(
-    "SELECT * FROM citibike_rides ORDER BY bikeid ASC LIMIT 5;",
+    "SELECT * FROM citibike_rides ORDER BY bikeid ASC LIMIT 50;",
     (err, res) => {
      console.log(err)
       if (err) return next(err);
