@@ -21,10 +21,10 @@ const cors = require('cors');
 
 app.use(bodyParser.json());
 
-// const origin = process.env.MODE === 'production' ?
-//   'https://bluebikes.herokuapp.com/' :
-//   'http://localhost:4000';
-// app.use(cors({ origin, credentials: true }));
+const origin = process.env.MODE === 'production' ?
+  'https://bluebikes.herokuapp.com/' :
+  'http://localhost:4000';
+app.use(cors({ origin, credentials: true }));
 
 
 
