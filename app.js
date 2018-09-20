@@ -1,6 +1,7 @@
 //  express is the library that makes this all possible
 const express = require('express');
-const pool = require('./db');
+// const pool = require('./db');
+// const pool = require('./db');
 
 
 //  Invoke express. Henseforth, app = express
@@ -8,7 +9,7 @@ const app = express();
 
 
 
-pool.connect();
+// pool.connect();
 
 const { DATABASE_URL } = process.env;
 
