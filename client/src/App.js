@@ -59,7 +59,7 @@ export default class App extends React.Component {
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // Not working
   // whatIsHost(){
-  //   let host = process.env.MODE === 'production' ?
+  //   let host = process.env.NODE_ENV === 'production' ?
   //   "https://bluebikes.herokuapp.com/":
   //   'http://localhost:4000';
   //   console.log("The process.env.NODE_ENV is:", process.env.NODE_ENV,  "is and The host is:", host)
@@ -128,7 +128,7 @@ export default class App extends React.Component {
 
   axiosWomanTripsByIdFromAPI() {
       // works but is too unweildy
-      let host = process.env.MODE === 'production' ?
+      let host = process.env.NODE_ENV === 'production' ?
       "https://bluebikes.herokuapp.com/":
       'http://localhost:4000';
       console.log("The process.env.NODE_ENV is:", process.env.NODE_ENV,  "is and The host is:", host)
