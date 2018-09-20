@@ -27,5 +27,6 @@ TODO.txt
 HOWTO.txt
 .env
 secrets/
+dbConfig.js
 
 

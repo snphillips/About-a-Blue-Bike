@@ -60,7 +60,7 @@ export default class BikeResults extends Component {
         <p>
           It has visited{" "}<span className="citibike-data">{totalStations}</span>{" "}
           stations. The most frequent station it has visited is{" "}
-          <span className="citibike-data">{topStation}</span>. The average Citi Bike has visited <span className="citibike-data">x stations</span>. The most popular station in the system is <span className="citibike-data">Pershing Square North</span>.
+          <span className="citibike-data">{topStation}</span>. The most popular station in the system is <span className="citibike-data">Pershing Square North</span>.
         </p>
 
         <h3>Gender:</h3>
@@ -80,3 +80,6 @@ export default class BikeResults extends Component {
     );
   }
 }
+
+
+// The average Citi Bike has visited <span className="citibike-data">x stations</span>.

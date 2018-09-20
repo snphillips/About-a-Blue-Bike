@@ -51,14 +51,19 @@ export default class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.allAPICalls = this.allAPICalls.bind(this);
     this.axiosUniqueBikesFromAPI = this.axiosUniqueBikesFromAPI.bind(this);
+    // this.whatIsHost = this.whatIsHost.bind(this);
 
-    // One place to list host in case I need to change them all
-    let host = "http://localhost:4000"
   }
-
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // End of constructor
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // Not working
+  // whatIsHost(){
+  //   let host = process.env.MODE === 'production' ?
+  //   "https://bluebikes.herokuapp.com/":
+  //   'http://localhost:4000';
+  //   console.log("The process.env.NODE_ENV is:", process.env.NODE_ENV,  "is and The host is:", host)
+  // }
 
   //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   //  The API calls from the client.
@@ -67,7 +72,7 @@ export default class App extends React.Component {
   // Is limited by query max set in server.
   // To adjust, visit biketripqueries.js in the Router folder
   axiosAllBikeTripsFromAPI() {
-    axios.get(`http://localhost:4000`)
+    axios.get(`https://bluebikes.herokuapp.com`)
       .then( (response) => {
         // console.log("axiosAllBikeTripsFromAPI", response);
       })
@@ -77,10 +82,9 @@ export default class App extends React.Component {
   }
 
   axiosUniqueBikesFromAPI() {
-    axios.get(`http://localhost:4000/uniquebikes`)
+    axios.get(`https://bluebikes.herokuapp.com/uniquebikes`)
       .then( (response) => {
         console.log("axiosUniqueBikesFromAPI:", response);
-        console.log("poptart")
       })
       .catch(function (error) {
         console.log(error);
@@ -88,7 +92,7 @@ export default class App extends React.Component {
   }
 
   axiosAllBikeTripsByIdFromAPI() {
-    axios.get(`http://localhost:4000/${this.state.bikeId}`)
+    axios.get(`https://bluebikes.herokuapp.com/${this.state.bikeId}`)
       .then( (response) => {
         // console.log("axiosAllBikeTripsByIdFromAPI", response);
       })
@@ -101,7 +105,7 @@ export default class App extends React.Component {
   // If user chooses a dud bikeId, they are prompted to choose an other number.
   axiosTotalNumTripsByIdFromAPI() {
     this.setState({loading: true})
-    axios.get(`http://localhost:4000/totaltrips/${this.state.bikeId}`)
+    axios.get(`https://bluebikes.herokuapp.com/totaltrips/${this.state.bikeId}`)
       .then( (response) => {
         // console.log("axiosTotalNumTripsByIdFromAPI", response.data[0].totaltrips);
         this.setState({totalTrips: response.data[0].totaltrips})
@@ -123,7 +127,14 @@ export default class App extends React.Component {
   }
 
   axiosWomanTripsByIdFromAPI() {
-    axios.get(`http://localhost:4000/womancyclisttrips/${this.state.bikeId}`)
+      // works but is too unweildy
+      let host = process.env.MODE === 'production' ?
+      "https://bluebikes.herokuapp.com/":
+      'http://localhost:4000';
+      console.log("The process.env.NODE_ENV is:", process.env.NODE_ENV,  "is and The host is:", host)
+
+
+    axios.get(`${host}/womancyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
         // console.log("axiosWomanTripsByIdFromAPI",response.data[0].womancyclisttrips);
         this.setState({womanCyclist: response.data[0].womancyclisttrips})
@@ -134,7 +145,7 @@ export default class App extends React.Component {
   }
 
   axiosManTripsByIdFromAPI() {
-    axios.get(`http://localhost:4000/mancyclisttrips/${this.state.bikeId}`)
+    axios.get(`https://bluebikes.herokuapp.com/mancyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
         // console.log("axiosManTripsByIdFromAPI", response.data[0].mancyclisttrips);
         this.setState({manCyclist: response.data[0].mancyclisttrips})
@@ -145,7 +156,7 @@ export default class App extends React.Component {
   }
 
   axiosUnknownGenderTripsByIdFromAPI() {
-    axios.get(`http://localhost:4000/unknowngendercyclisttrips/${this.state.bikeId}`)
+    axios.get(`https://bluebikes.herokuapp.com/unknowngendercyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
         // console.log("axiosUnknownGenderTripsByIdFromAPI", response.data[0].unknowngendercyclisttrips);
         this.setState({genderUnknownCyclist: response.data[0].unknowngendercyclisttrips})
@@ -156,7 +167,7 @@ export default class App extends React.Component {
   }
 
   axiosFirstRideDateByIdFromAPI() {
-    axios.get(`http://localhost:4000/firstridedate/${this.state.bikeId}`)
+    axios.get(`https://bluebikes.herokuapp.com/firstridedate/${this.state.bikeId}`)
       .then( (response) => {
        // console.log("axiosFirstRideDateByIdFromAPI", response.data[0].firstridedate);
         this.setState({firstRideDate: response.data[0].firstridedate})
@@ -167,7 +178,7 @@ export default class App extends React.Component {
   }
 
     axiosFirstRideTimeByIdFromAPI() {
-    axios.get(`http://localhost:4000/firstridetime/${this.state.bikeId}`)
+    axios.get(`https://bluebikes.herokuapp.com/firstridetime/${this.state.bikeId}`)
       .then( (response) => {
        // console.log("axiosFirstRideTimeByIdFromAPI", response.data[0].firstridedate);
         this.setState({firstRideTime: response.data[0].firstridetime})
@@ -178,7 +189,7 @@ export default class App extends React.Component {
   }
 
   axiosLastRideDateByIdFromAPI() {
-    axios.get(`http://localhost:4000/lastridedate/${this.state.bikeId}`)
+    axios.get(`https://bluebikes.herokuapp.com/lastridedate/${this.state.bikeId}`)
       .then( (response) => {
        // console.log("axiosFirstRideDateByIdFromAPI", response.data[0].lastridedate);
         this.setState({lastRideDate: response.data[0].lastridedate})
@@ -189,7 +200,7 @@ export default class App extends React.Component {
   }
 
   axiosLastRideTimeByIdFromAPI() {
-  axios.get(`http://localhost:4000/lastridetime/${this.state.bikeId}`)
+  axios.get(`https://bluebikes.herokuapp.com/lastridetime/${this.state.bikeId}`)
     .then( (response) => {
      // console.log("axiosFirstRideDateByIdFromAPI", response.data[0].lastridedate);
       this.setState({lastRideTime: response.data[0].lastridetime})
@@ -200,7 +211,7 @@ export default class App extends React.Component {
 }
 
   axiosTotalTimeByIdFromAPI() {
-    axios.get(`http://localhost:4000/totaltime/${this.state.bikeId}`)
+    axios.get(`https://bluebikes.herokuapp.com/totaltime/${this.state.bikeId}`)
       .then( (response) => {
        // console.log("axiosTotalTimeByIdFromAPI", response.data[0].totaltimeonroad);
         this.setState({totalTime: response.data[0].totaltimeonroad})
@@ -211,7 +222,7 @@ export default class App extends React.Component {
   }
 
   axiosTotalDistanceByIdFromAPI() {
-    axios.get(`http://localhost:4000/totaldistance/${this.state.bikeId}`)
+    axios.get(`https://bluebikes.herokuapp.com/totaldistance/${this.state.bikeId}`)
       .then( (response) => {
        // console.log("axiosTotalDistanceByIdFromAPI", response.data[0].totaldistance );
         this.setState({totalDistance: response.data[0].totaldistance})
@@ -222,7 +233,7 @@ export default class App extends React.Component {
   }
 
   axiosAvgDurationByIdFromAPI() {
-    axios.get(`http://localhost:4000/avgtripdurationbyid/${this.state.bikeId}`)
+    axios.get(`https://bluebikes.herokuapp.com/avgtripdurationbyid/${this.state.bikeId}`)
       .then( (response) => {
        // console.log("axiosAvgDurationByIdFromAPI", response.data[0].avgtripduration );
         this.setState({avgTripDurationById: response.data[0].avgtripdurationbyid})
@@ -233,7 +244,7 @@ export default class App extends React.Component {
   }
 
   axiosTotalStationsByIdFromAPI() {
-    axios.get(`http://localhost:4000/totalstations/${this.state.bikeId}`)
+    axios.get(`https://bluebikes.herokuapp.com/totalstations/${this.state.bikeId}`)
       .then( (response) => {
        // console.log("axiosTotalStationsByIdFromAPI", response.data[0].totalstations);
         this.setState({totalStations: response.data[0].totalstations})
@@ -244,7 +255,7 @@ export default class App extends React.Component {
   }
 
     axiosTopStationByIdFromAPI() {
-    axios.get(`http://localhost:4000/topstation/${this.state.bikeId}`)
+    axios.get(`https://bluebikes.herokuapp.com/topstation/${this.state.bikeId}`)
       .then( (response) => {
        // console.log("axiosTotalStationsByIdFromAPI", response.data[0].startstationname);
         this.setState({topStation: response.data[0].startstationname})
