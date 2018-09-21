@@ -2,7 +2,8 @@ import React from "react";
 import axios from "axios";
 
 
-//  Not working. Why?
+//  Ideally the axios calls can be removed from the App.js
+//  Not working yet. Why?
 
   axiosTotalNumTripsByIdFromAPI() {
     this.setState({loading: true})
@@ -49,7 +50,7 @@ import axios from "axios";
       });
   }
 
-module.exports =
-  axiosTotalNumTripsByIdFromAPI;
-  axiosWomanTripsByIdFromAPI;
-  axiosManTripsByIdFromAPI;
+// module.exports =
+//   axiosTotalNumTripsByIdFromAPI;
+//   axiosWomanTripsByIdFromAPI;
+//   axiosManTripsByIdFromAPI;

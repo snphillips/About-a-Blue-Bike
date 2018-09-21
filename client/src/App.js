@@ -127,12 +127,6 @@ export default class App extends React.Component {
   }
 
   axiosWomanTripsByIdFromAPI() {
-      // works locally but not on Heroku. Also, is too unweildy
-      // let host = process.env.NODE_ENV === 'development' ?
-      // "http://localhost:4000":
-      // "https://bluebikes.herokuapp.com/";
-      // console.log("The process.env.NODE_ENV is:", process.env.NODE_ENV,  "is and the host is:", host)
-
     axios.get(`https://bluebikes.herokuapp.com/womancyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
         // console.log("axiosWomanTripsByIdFromAPI",response.data[0].womancyclisttrips);
