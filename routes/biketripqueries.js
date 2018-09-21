@@ -3,8 +3,6 @@ const pool = require("../config/connection");
 const router = Router();
 
 
-
-
 /* GET all trips. Max 5 for now */
 router.get("/", (request, response, next) => {
   pool.query(

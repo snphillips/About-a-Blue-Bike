@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 //   'http://localhost:4000';
 // app.use(cors({ origin, credentials: true }));
 
-
+// - remove when satisfied
 // app.use(function(req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
