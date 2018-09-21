@@ -8,11 +8,15 @@
 require('dotenv').config();
 
 const express = require('express');
+// const cors = require('cors');
 const app = require('../app');
+// const app = express();
 
 
-//  Connecting to Heroku database
-//  https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
+// app.use(cors());
+
+//  From Heroku instructions
+// https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
 // *****************
 const { Client } = require('pg');
 
@@ -30,13 +34,14 @@ client.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
   }
   client.end();
 });
+
 // *****************
-// Not working here - remove
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
+// Not working here
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 
 // Dynamic Port Binding
@@ -50,4 +55,3 @@ app.listen(PORT, () => {
   console.log(`Database URL is: ${process.env.DATABASE_URL}.`)
   console.log(`Development or Production?: ${process.env.MODE}.`)
 });
-
