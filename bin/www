@@ -8,12 +8,8 @@
 require('dotenv').config();
 
 const express = require('express');
-// const cors = require('cors');
 const app = require('../app');
-// const app = express();
 
-
-// app.use(cors());
 
 //  From Heroku instructions
 // https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
@@ -37,11 +33,11 @@ client.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
 
 // *****************
 // Not working here
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 
 // Dynamic Port Binding

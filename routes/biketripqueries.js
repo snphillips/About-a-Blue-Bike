@@ -76,18 +76,19 @@ router.get("/totaltrips/:bikeid", (request, response, next) => {
 
 // Women Cyclists total DOES NOT WORK (query works in psql)
 // Error 22P02 "invalid_text_representation"
-router.get("/womancyclisttrips", (request, response, next) => {
-  pool.query(
-    `SELECT COUNT (gender)
-    AS womancyclisttrips
-    FROM citibike_rides
-    WHERE gender = 2;`,
-    (err, res) => {
-      if (err) return next(err);
-      response.json(res.rows);
-    }
-  );
-});
+// Not actively using this query
+// router.get("/womancyclisttrips", (request, response, next) => {
+//   pool.query(
+//     `SELECT COUNT (gender)
+//     AS womancyclisttrips
+//     FROM citibike_rides
+//     WHERE gender = 2;`,
+//     (err, res) => {
+//       if (err) return next(err);
+//       response.json(res.rows);
+//     }
+//   );
+// });
 
 // Woman Cyclists, works
 router.get("/womancyclisttrips/:bikeid", (request, response, next) => {

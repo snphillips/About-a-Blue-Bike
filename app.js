@@ -31,6 +31,7 @@ app.use(bodyParser.json());
 //   'https://bluebikes.herokuapp.com/' :
 //   'http://localhost:4000';
 // app.use(cors({ origin, credentials: true }));
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
