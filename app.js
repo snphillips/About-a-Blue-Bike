@@ -1,32 +1,28 @@
 //  express is the library that makes this all possible
 const express = require('express');
+
+// npm package to allow cross origin resource sharing
 var cors = require('cors')
 
 //  Invoke express. Henseforth, app = express
 const app = express();
 
+const { DATABASE_URL } = process.env;
 
+//  body-parser is an npm plugin for Express that we need to use in order
+//  to be able to capture data coming via a form. Express used to have this
+//  functionality built-in but in order to achieve easier maintenance
+//  body-parser has been removed from the core of Express.
+const bodyParser = require('body-parser');
+
+// All your routes are in there
+const routes = require('./routes');
 
 app.use(cors())
 
-
-
-
-
-// pool.connect();
-
-const { DATABASE_URL } = process.env;
-
-
-const bodyParser = require('body-parser');
-const routes = require('./routes');
-// const cors = require('cors');
-// app.use(cors());
-
-
 app.use(bodyParser.json());
 
-// Test to see if this is doing anything
+// Test to see if this is doing anything - remove when satisfied
 // const origin = process.env.MODE === 'production' ?
 //   'https://bluebikes.herokuapp.com/' :
 //   'http://localhost:4000';

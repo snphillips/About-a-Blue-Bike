@@ -36,7 +36,7 @@ client.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
 });
 
 // *****************
-// Not working here
+// Not working here - remove when satisfied
 // app.use(function(req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
