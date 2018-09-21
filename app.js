@@ -2,7 +2,7 @@
 const express = require('express');
 
 // npm package to allow cross origin resource sharing
-// var cors = require('cors')
+var cors = require('cors')
 
 //  Invoke express. Henseforth, app = express
 const app = express();
@@ -23,7 +23,7 @@ const routes = require('./routes');
 // **********************************
 // app.uses
 // **********************************
-// app.use(cors())
+app.use(cors())
 app.use(bodyParser.json());
 app.use('/', routes);
 
