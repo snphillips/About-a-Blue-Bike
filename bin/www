@@ -11,8 +11,8 @@ const express = require('express');
 const app = require('../app');
 
 
-//  From Heroku instructions
-// https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
+//  Connecting to Heroku database
+//  https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
 // *****************
 const { Client } = require('pg');
 
@@ -30,9 +30,8 @@ client.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
   }
   client.end();
 });
-
 // *****************
-// Not working here
+// Not working here - remove
 // app.use(function(req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
