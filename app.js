@@ -1,8 +1,9 @@
+
 //  express is the library that makes this all possible
 const express = require('express');
 
 // npm package to allow cross origin resource sharing
-var cors = require('cors')
+const cors = require('cors')
 
 //  Invoke express. Henseforth, app = express
 const app = express();
@@ -27,7 +28,7 @@ app.use(cors())
 app.use(bodyParser.json());
 app.use('/', routes);
 
-// Error Handler
+// Error Handlers
 app.use((err, req, res, next) => {
   res.json(err);
   res.status(500).send('Oh no a 500 error. Maybe you have a flat tire?')
@@ -38,15 +39,3 @@ app.use((req, res, next) => {
 })
 
  module.exports = app;
-// Test to see if this is doing anything - remove when satisfied
-// const origin = process.env.MODE === 'production' ?
-//   'https://bluebikes.herokuapp.com/' :
-//   'http://localhost:4000';
-// app.use(cors({ origin, credentials: true }));
-
-// - remove when satisfied
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
