@@ -31,11 +31,13 @@ app.use(bodyParser.json());
 //   'https://bluebikes.herokuapp.com/' :
 //   'http://localhost:4000';
 // app.use(cors({ origin, credentials: true }));
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+
+
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
 
 app.use('/', routes);
@@ -46,5 +48,5 @@ app.use((err, req, res, next) => {
   res.json(err);
 });
 
-
+console.log("sanity check 01- remove app.use cors")
  module.exports = app;
