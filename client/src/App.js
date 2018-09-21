@@ -17,8 +17,8 @@ export default class App extends React.Component {
     this.state = {
       bikeId: "bikeId_initial_state",
       totalTrips: "totalTrips_state",
-      manCyclist: "manCyclist_state",
       womanCyclist: "womanCyclist_state",
+      manCyclist: "manCyclist_state",
       genderUnknownCyclist: "genderUnknownCyclist_state",
       firstRideDate: "firstRideDate_state",
       firstRideTime: "firstRideTime_state",
@@ -132,7 +132,6 @@ export default class App extends React.Component {
       // "http://localhost:4000":
       // "https://bluebikes.herokuapp.com/";
       // console.log("The process.env.NODE_ENV is:", process.env.NODE_ENV,  "is and the host is:", host)
-
 
     axios.get(`https://bluebikes.herokuapp.com/womancyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
