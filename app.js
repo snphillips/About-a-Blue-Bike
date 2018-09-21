@@ -1,10 +1,13 @@
 //  express is the library that makes this all possible
 const express = require('express');
-
-
+var cors = require('cors')
 
 //  Invoke express. Henseforth, app = express
 const app = express();
+
+
+
+app.use(cors())
 
 
 
@@ -17,8 +20,8 @@ const { DATABASE_URL } = process.env;
 
 const bodyParser = require('body-parser');
 const routes = require('./routes');
-const cors = require('cors');
-app.use(cors());
+// const cors = require('cors');
+// app.use(cors());
 
 
 app.use(bodyParser.json());
