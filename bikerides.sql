@@ -25,7 +25,8 @@
 -- 6) To view the database tables (if there are any), type \dt
 
 -- 7) THE EASY WAY: execute this file by typing in the command line:
---    \i bikerides.sql
+-- $ psql
+--   \i bikerides.sql
 
 -- THE HARD WAY:
 -- 7) Start fresh by droppin current table:
@@ -64,9 +65,9 @@ CREATE TABLE citibike_rides (
 
 \copy citibike_rides (tripduration,starttime,stoptime,startstationid,startstationname,startstationlatitude,startstationlongitude,endstationid,endstationname,endstationlatitude,endstationlongitude,bikeid, usertype,birthyear,gender) FROM '/Users/snphillips/1webdev/aboutabluebikereact-ancillary/citibike_data_2018/201806-citibike-tripdata.csv' DELIMITER ',' CSV HEADER;
 
-\copy citibike_rides (tripduration,starttime,stoptime,startstationid,startstationname,startstationlatitude,startstationlongitude,endstationid,endstationname,endstationlatitude,endstationlongitude,bikeid, usertype,birthyear,gender) FROM '/Users/snphillips/1webdev/aboutabluebikereact-ancillary/citibike_data_2018/201807-citibike-tripdata.csv' DELIMITER ',' CSV HEADER;
+-- \copy citibike_rides (tripduration,starttime,stoptime,startstationid,startstationname,startstationlatitude,startstationlongitude,endstationid,endstationname,endstationlatitude,endstationlongitude,bikeid, usertype,birthyear,gender) FROM '/Users/snphillips/1webdev/aboutabluebikereact-ancillary/citibike_data_2018/201807-citibike-tripdata.csv' DELIMITER ',' CSV HEADER;
 
-\copy citibike_rides (tripduration,starttime,stoptime,startstationid,startstationname,startstationlatitude,startstationlongitude,endstationid,endstationname,endstationlatitude,endstationlongitude,bikeid, usertype,birthyear,gender) FROM '/Users/snphillips/1webdev/aboutabluebikereact-ancillary/citibike_data_2018/201808-citibike-tripdata.csv' DELIMITER ',' CSV HEADER;
+-- \copy citibike_rides (tripduration,starttime,stoptime,startstationid,startstationname,startstationlatitude,startstationlongitude,endstationid,endstationname,endstationlatitude,endstationlongitude,bikeid, usertype,birthyear,gender) FROM '/Users/snphillips/1webdev/aboutabluebikereact-ancillary/citibike_data_2018/201808-citibike-tripdata.csv' DELIMITER ',' CSV HEADER;
 
 \copy citibike_rides (tripduration,starttime,stoptime,startstationid,startstationname,startstationlatitude,startstationlongitude,endstationid,endstationname,endstationlatitude,endstationlongitude,bikeid, usertype,birthyear,gender) FROM '/Users/snphillips/1webdev/aboutabluebikereact-ancillary/citibike_data_2018/JC-201801-citibike-tripdata.csv' DELIMITER ',' CSV HEADER;
 
@@ -80,13 +81,25 @@ CREATE TABLE citibike_rides (
 
 \copy citibike_rides (tripduration,starttime,stoptime,startstationid,startstationname,startstationlatitude,startstationlongitude,endstationid,endstationname,endstationlatitude,endstationlongitude,bikeid, usertype,birthyear,gender) FROM '/Users/snphillips/1webdev/aboutabluebikereact-ancillary/citibike_data_2018/JC-201806-citibike-tripdata.csv' DELIMITER ',' CSV HEADER;
 
-\copy citibike_rides (tripduration,starttime,stoptime,startstationid,startstationname,startstationlatitude,startstationlongitude,endstationid,endstationname,endstationlatitude,endstationlongitude,bikeid, usertype,birthyear,gender) FROM '/Users/snphillips/1webdev/aboutabluebikereact-ancillary/citibike_data_2018/JC-201807-citibike-tripdata.csv' DELIMITER ',' CSV HEADER;
+-- \copy citibike_rides (tripduration,starttime,stoptime,startstationid,startstationname,startstationlatitude,startstationlongitude,endstationid,endstationname,endstationlatitude,endstationlongitude,bikeid, usertype,birthyear,gender) FROM '/Users/snphillips/1webdev/aboutabluebikereact-ancillary/citibike_data_2018/JC-201807-citibike-tripdata.csv' DELIMITER ',' CSV HEADER;
 
-\copy citibike_rides (tripduration,starttime,stoptime,startstationid,startstationname,startstationlatitude,startstationlongitude,endstationid,endstationname,endstationlatitude,endstationlongitude,bikeid, usertype,birthyear,gender) FROM '/Users/snphillips/1webdev/aboutabluebikereact-ancillary/citibike_data_2018/JC-201808-citibike-tripdata.csv' DELIMITER ',' CSV HEADER;
-
+-- \copy citibike_rides (tripduration,starttime,stoptime,startstationid,startstationname,startstationlatitude,startstationlongitude,endstationid,endstationname,endstationlatitude,endstationlongitude,bikeid, usertype,birthyear,gender) FROM '/Users/snphillips/1webdev/aboutabluebikereact-ancillary/citibike_data_2018/JC-201808-citibike-tripdata.csv' DELIMITER ',' CSV HEADER;
 
 
 -- 11) To view some rows (to ensure import was a success) type SELECT * FROM citibike_rides LIMIT 10;
 -- 12) You'll need to index the db otherwise retrieval will be slow:
-  CREATE INDEX index
-  ON citibike_rides (bikeid);
+  DELETE FROM citibike_rides
+WHERE endstationname = 'NYCBS Depot BAL - DYR'
+OR endstationname = 'NYCBS Depot BAL - PIT'
+OR endstationname = 'NYCBS Depot BAL - DELANCEY'
+OR endstationname = 'NYCBS Depot BAL - RIS'
+OR endstationname = 'NYCBS Depot BAL - GOW'
+OR endstationname = 'NYCBS Depot BAL - STY - Garage 4'
+OR endstationname = 'JCBS Depot'
+OR endstationname = '8D QC Station 01'
+OR endstationname = 'Apache'
+OR endstationname = 'GOW Tech Shop'
+OR endstationname = 'Prototype Lab Motivate Headquarters';
+
+CREATE INDEX index ON citibike_rides (bikeid);
+

@@ -3,6 +3,7 @@ very dark blue: #042862
 dark blue: #052c6c;
 light blue: #1c98e5;
 bike illustration blue: #1884c7;
+border-color: #063c93;
 white: #fff;
 light light blue: #d2e7e8;
 light red: #f15641;
@@ -33,6 +34,14 @@ h2 {
   font-size: 120%;
 }
 
+/*The headings on the results page*/
+h3 {
+  color: #d2e7e8;
+  font-size: 110%;
+  margin-top: 30px;
+  margin-bottom: -15px;
+  border-bottom: 3px solid #063c93;
+}
 /*===================================================
 Navigation
 ===================================================*/
@@ -168,6 +177,7 @@ Classes & IDs
   max-width: 300px;
 }
 
+/*The spinner. This is an nmp package.*/
 .sweet-loading {
   margin: 10px 0;
 }

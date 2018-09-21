@@ -101,8 +101,10 @@ export default class App extends React.Component {
       });
   }
 
-  // Here is where we check if the user inputed a bikeId with a trip history.
-  // If user chooses a dud bikeId, they are prompted to choose an other number.
+  //  Here is where we check if the user inputed a bikeId with a trip history.
+  //  If user chooses a dud bikeId, they are prompted to choose an other number.
+  //  Also, here is where we enable the spinner. When there's a response, (either
+  //  successful on not), loading is set to false, which dissables the spinner.
   axiosTotalNumTripsByIdFromAPI() {
     this.setState({loading: true})
     axios.get(`https://bluebikes.herokuapp.com/totaltrips/${this.state.bikeId}`)
@@ -284,7 +286,7 @@ export default class App extends React.Component {
   }
 
   //  ==================================================================
-  //  Random bikeId number generator
+  //  Random bikeId number generator - in progress
   //  ==================================================================
   randomBikeIdGenerator(min, max) {
     this.makeArrayOfBikeIdNumbers();

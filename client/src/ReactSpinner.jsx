@@ -1,5 +1,6 @@
 import React from 'react';
 import { css } from 'react-emotion';
+//react-spinners is an npm package
 import { SyncLoader } from 'react-spinners';
 
 

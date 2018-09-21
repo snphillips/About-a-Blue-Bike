@@ -35,7 +35,7 @@ export default class BikeResults extends Component {
 
         <h3>Trips:</h3>
         <p>
-          In 2018, this bicycle has been taken on{" "}
+          From January to June 2018, this bicycle has been taken on{" "}
           <span className="citibike-data"> {totalTrips} </span> trips. The average Citi Bike has been on <span className="citibike-data">575</span> trips during the same period of time.
         </p>
         <p>
@@ -52,8 +52,9 @@ export default class BikeResults extends Component {
         <h3>Ride Dates:</h3>
         <p>
           It had its first ride of the year on
-          <span className="citibike-data"> {firstRideDate}</span> at <span className="citibike-data">{firstRideTime}</span>. Its last recorded ride was on
-          <span className="citibike-data"> {lastRideDate}</span> at <span className="citibike-data">{lastRideTime}</span>.
+          <span className="citibike-data"> {firstRideDate}</span> at <span className="citibike-data">{firstRideTime}</span>.
+          <br/>
+          Its last recorded ride was on<span className="citibike-data"> {lastRideDate}</span> at <span className="citibike-data">{lastRideTime}</span>.
         </p>
 
         <h3>Stations:</h3>
