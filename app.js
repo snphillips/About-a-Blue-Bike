@@ -12,16 +12,32 @@ const { DATABASE_URL } = process.env;
 //  body-parser is an npm plugin for Express that we need to use in order
 //  to be able to capture data coming via a form. Express used to have this
 //  functionality built-in but in order to achieve easier maintenance
-//  body-parser has been removed from the core of Express.
+//  body-parser has been removed from the core of Express. body-parse parses
+//  incoming request bodies in a middleware before your handlers, available
+//  under the req.body property. (makes your forms work)
 const bodyParser = require('body-parser');
 
 // All your routes are in there
 const routes = require('./routes');
 
+// **********************************
+// app.uses
+// **********************************
 app.use(cors())
-
 app.use(bodyParser.json());
+app.use('/', routes);
 
+// Error Handler
+app.use((err, req, res, next) => {
+  res.json(err);
+  res.status(500).send('Oh no a 500 error. Maybe you have a flat tire?')
+});
+
+app.use((req, res, next) => {
+  res.status(404).send(`Oh no a 404 error. I can't find that.`)
+})
+
+ module.exports = app;
 // Test to see if this is doing anything - remove when satisfied
 // const origin = process.env.MODE === 'production' ?
 //   'https://bluebikes.herokuapp.com/' :
@@ -34,15 +50,3 @@ app.use(bodyParser.json());
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 //   next();
 // });
-
-
-app.use('/', routes);
-
-
-// Error Handler.
-app.use((err, req, res, next) => {
-  res.json(err);
-});
-
-console.log("sanity check 01- remove app.use cors")
- module.exports = app;

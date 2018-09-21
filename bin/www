@@ -4,13 +4,18 @@
 //  So you can require('./app') from external files and get the express
 //  app that is not listening on any port (think unit tests and the like).
 
-// Dotenv is a module that loads environment variables from a .env file into process.env.
+// --------------------------------------------------------------
+//  "requires" go first
+// --------------------------------------------------------------
+// dotenv is an nmp module that loads environment variables from a .env
+// file into process.env.
 require('dotenv').config();
 
+//  express is the library that makes this all possible
 const express = require('express');
-// const cors = require('cors');
+
 const app = require('../app');
-// const app = express();
+
 
 
 // app.use(cors());
