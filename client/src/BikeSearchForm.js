@@ -7,8 +7,8 @@ export default class BikeSearchForm extends Component {
   render() {
 
     // The following adds a red border to the input field if the user
-    // chooses a bike that doesn't have a ride history. View index.css for
-    // no-trips-bike-id class.
+    // chooses a bike that doesn't have a ride history. View index.css
+    // to see the no-trips-bike-id class.
     let inputErrorClass
     if (this.props.parent_state.bikeIdValid === false) {
       inputErrorClass = "no-trips-bike-id"

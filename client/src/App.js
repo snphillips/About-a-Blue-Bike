@@ -31,7 +31,7 @@ export default class App extends React.Component {
       totalStations:"totalStations_state",
       topStation:"topStation_state",
 
-      randomBikeId: '', //This is for the the randomly generated id button
+      randomBikeId:"randomBikeId_state", //This is for the the randomly generated id button
       loading: false,
       bikeIdValid: true,
 
@@ -54,8 +54,8 @@ export default class App extends React.Component {
     this.allAPICalls = this.allAPICalls.bind(this);
     this.axiosUniqueBikesFromAPI = this.axiosUniqueBikesFromAPI.bind(this);
     this.displayErrorOrDisplayResults = this.displayErrorOrDisplayResults.bind(this);
-    // this.bikeIdDoesExist = this.bikeIdDoesExist.bind(this);
-    // this.bikeIdDoesNotExist = this.bikeIdDoesNotExist.bind(this);
+    this.axiosRandomBikeId = this.axiosRandomBikeId.bind(this);
+    this.randomSubmit = this.randomSubmit.bind(this);
     // this.whatIsHost = this.whatIsHost.bind(this);
 
   }
@@ -86,10 +86,11 @@ export default class App extends React.Component {
       });
   }
 
+// Not using for anything at the moment
   axiosUniqueBikesFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/uniquebikes`)
       .then( (response) => {
-        console.log("axiosUniqueBikesFromAPI:", response);
+        // console.log("axiosUniqueBikesFromAPI:", response);
       })
       .catch(function (error) {
         console.log(error);
@@ -99,24 +100,23 @@ export default class App extends React.Component {
   axiosRandomBikeId(){
     axios.get(`https://bluebikes.herokuapp.com/randombikeid`)
           .then( (response) => {
-        console.log("axiosRandomBikeId:", response);
+        console.log("randomBikeId:", response.data[0].bikeid);
         this.setState({randomBikeId: response.data[0].bikeid})
-        this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
       });
   }
 
- // Not actually using at the moment
+ // Not using at the moment
   axiosAllBikeTripsByIdFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/${this.state.bikeId}`)
-      .then( (response) => {
-        // console.log("axiosAllBikeTripsByIdFromAPI", response);
-      })
-      .catch( function (error) {
-        console.log(error);
-      });
+    // axios.get(`https://bluebikes.herokuapp.com/${this.state.bikeId}`)
+    //   .then( (response) => {
+    //     // console.log("axiosAllBikeTripsByIdFromAPI", response);
+    //   })
+    //   .catch( function (error) {
+    //     console.log(error);
+    //   });
   }
 
   axiosTotalNumTripsByIdFromAPI() {
@@ -282,7 +282,6 @@ export default class App extends React.Component {
   //  ==================================================================
   //  All the API calls from the client in one place
   //  ==================================================================
-
   allAPICalls() {
     this.axiosAllBikeTripsByIdFromAPI();
     this.axiosTotalNumTripsByIdFromAPI();
@@ -298,34 +297,24 @@ export default class App extends React.Component {
     this.axiosAvgDurationByIdFromAPI();
     this.axiosTotalStationsByIdFromAPI();
     this.axiosTopStationByIdFromAPI();
-    // this.axiosUniqueBikesFromAPI();
   }
 
   //  ==================================================================
   //  Random bikeId number generator - in progress
   //  ==================================================================
-  randomBikeIdGenerator(min, max) {
-    this.makeArrayOfBikeIdNumbers();
-    this.getRandomInt();
-  }
-
-  getRandomInt(min, max) {
-    let randomBikeId =  Math.floor(Math.random() * (33699 - 14529 + 1)) + 14529;
-    console.log(randomBikeId);
-  }
-
-  makeArrayOfBikeIdNumbers() {
-    let numberArray = [];
-    for(var i = 14529; i <= 33699; i++) {
-      numberArray.push(i)
-    }
-    console.log(numberArray);
-  }
-
   randomSubmit(event) {
-    console.log("randomSubmit button clicked")
-     event.preventDefault();
-     this.axiosUniqueBikesFromAPI();
+    console.log("randomSubmit button clicked.")
+    event.preventDefault();
+    // this.axiosRandomBikeId();
+    axios.get(`https://bluebikes.herokuapp.com/randombikeid`)
+          .then( (response) => {
+        this.setState({bikeId: response.data[0].bikeid})
+        console.log("Random BikeId:", response.data[0].bikeid);
+        console.log("the state of bikeId is :", this.state.bikeId);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
    };
 
   //  ==================================================================
@@ -448,9 +437,11 @@ export default class App extends React.Component {
           bikeIdValid={this.state.bikeIdValid}
           loading={this.state.loading}
           showErrorMessage={this.state.errorMessageDisplay}
+          randomBikeId={this.state.randomBikeId}
           randomSubmit={this.randomSubmit}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
+          randomSubmit={this.randomSubmit}
           />
 
         <BikeResults

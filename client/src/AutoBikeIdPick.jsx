@@ -13,7 +13,9 @@ export default class AutoBikeIdPick extends Component {
               type="submit"
               value="random bike id picker"
               placeholder="random"
-              onClick={this.props.randomSubmit}
+              // onClick={this.props.randomSubmit}
+              onClick={this.props.randomSubmit.bind(this)}
+              // onClick={this.handleClick.bind(this)}
             />
           </form>
          </div>

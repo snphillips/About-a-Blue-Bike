@@ -19,14 +19,13 @@ export default class BikeLookupPage extends Component {
       <p>Every Citi Bike has a distinct id number.</p>
       <p>Input a number between 14529 and 33699 in the field below.</p>
       <p>Not all bikes are active so you may have to choose several numbers before you find an active bike.</p>
-    {/*  <p>Too lazy to pick a number? Press the random bike id generator button.</p> */}
+      <p>You can also press the random bike id generator button.</p>
 
-      <br/>
-
-   {/*   <AutoBikeIdPick
-        handleClick={this.props.randomBikeIdGenerator}
+      <AutoBikeIdPick
+        parent_state={this.props.parent_state}
         randomSubmit={this.props.randomSubmit}
-      />   */}
+        randomBikeId={this.props.randomBikeId}
+      />
 
       <BikeSearchForm
         parent_state={this.props.parent_state}
@@ -34,6 +33,7 @@ export default class BikeLookupPage extends Component {
         bikeIdValid={this.props.bikeIdValid}
         handleChange={this.props.handleChange}
         handleSubmit={this.props.handleSubmit}
+        randomBikeId={this.props.randomBikeId}
       />
     </div>
     );
