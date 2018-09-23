@@ -28,5 +28,6 @@ HOWTO.txt
 .env
 secrets/
 dbConfig.js
+about-content.docx
 
 

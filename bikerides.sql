@@ -88,18 +88,24 @@ CREATE TABLE citibike_rides (
 
 -- 11) To view some rows (to ensure import was a success) type SELECT * FROM citibike_rides LIMIT 10;
 -- 12) You'll need to index the db otherwise retrieval will be slow:
-  DELETE FROM citibike_rides
+DELETE FROM citibike_rides
 WHERE endstationname = 'NYCBS Depot BAL - DYR'
 OR endstationname = 'NYCBS Depot BAL - PIT'
 OR endstationname = 'NYCBS Depot BAL - DELANCEY'
+OR endstationname = 'NYCBS DEPOT - DELANCEY'
 OR endstationname = 'NYCBS Depot BAL - RIS'
 OR endstationname = 'NYCBS Depot BAL - GOW'
+OR endstationname = 'NYCBS Depot - GOW'
 OR endstationname = 'NYCBS Depot BAL - STY - Garage 4'
+OR endstationname = 'NYCBS Depot 3AV'
 OR endstationname = 'JCBS Depot'
 OR endstationname = '8D QC Station 01'
 OR endstationname = 'Apache'
 OR endstationname = 'GOW Tech Shop'
-OR endstationname = 'Prototype Lab Motivate Headquarters';
+OR endstationname = 'Prototype Lab Motivate Headquarters'
+or tripduration > 86400 -- remove trips more than 24hrs. 1751 rows
+OR (startstationname = endstationname AND tripduration < 90); --less than 1.5 mins
+-- This deletes 12,985 rows
 
 CREATE INDEX index ON citibike_rides (bikeid);
 

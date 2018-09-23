@@ -41,12 +41,12 @@ export default class BikeResults extends Component {
         <p>
           It has been ridden for aproximately{" "}
           <span className="citibike-data">{totalTime}</span> hours and
-          travelled aproximately <span className="citibike-data">{totalDistance}</span> miles, based on an assumed speed of 7.45 miles per hour. The average Citi Bike has been ridden for aproximately <span className="citibike-data">143</span> hours and travelled aproximately <span className="citibike-data"> 1062 </span> miles.
+          travelled aproximately <span className="citibike-data">{totalDistance}</span> miles, based on an assumed speed of 7.45 miles per hour. The average Citi Bike has been ridden for aproximately <span className="citibike-data">132</span> hours and travelled aproximately <span className="citibike-data"> 983.4 </span> miles.
         </p>
         <p>
           The average trip on this bicycle lasts{" "}
           <span className="citibike-data">{avgTripDurationById}</span> minutes. The average Citi Bike trip lasts{" "}
-          <span className="citibike-data">14</span> minutes.
+          <span className="citibike-data">13</span> minutes.
         </p>
 
         <h3>Ride Dates:</h3>

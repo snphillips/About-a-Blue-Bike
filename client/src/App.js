@@ -51,6 +51,9 @@ export default class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.allAPICalls = this.allAPICalls.bind(this);
     this.axiosUniqueBikesFromAPI = this.axiosUniqueBikesFromAPI.bind(this);
+    this.displayErrorOrDisplayResults = this.displayErrorOrDisplayResults.bind(this);
+    // this.bikeIdDoesExist = this.bikeIdDoesExist.bind(this);
+    // this.bikeIdDoesNotExist = this.bikeIdDoesNotExist.bind(this);
     // this.whatIsHost = this.whatIsHost.bind(this);
 
   }
@@ -101,27 +104,13 @@ export default class App extends React.Component {
       });
   }
 
-  //  Here is where we check if the user inputed a bikeId with a trip history.
-  //  If user chooses a dud bikeId, they are prompted to choose an other number.
-  //  Also, here is where we enable the spinner. When there's a response, (either
-  //  successful on not), loading is set to false, which dissables the spinner.
   axiosTotalNumTripsByIdFromAPI() {
     this.setState({loading: true})
     axios.get(`https://bluebikes.herokuapp.com/totaltrips/${this.state.bikeId}`)
       .then( (response) => {
         // console.log("axiosTotalNumTripsByIdFromAPI", response.data[0].totaltrips);
         this.setState({totalTrips: response.data[0].totaltrips})
-
-          if (response.data[0].totaltrips == 0) {
-            this.setState({loading: false});
-            this.setState({bikeIdValid: false});
-            this.showErrorMessage();
-          } else {
-            this.setState({bikeIdValid: true})
-            this.setState({loading: false})
-            this.setState({bikeResultsPageDisplay: {'display': true}})
-            this.setState({bikeLookupPageDisplay: {'display': 'none'}})
-          }
+        this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -133,6 +122,7 @@ export default class App extends React.Component {
       .then( (response) => {
         // console.log("axiosWomanTripsByIdFromAPI",response.data[0].womancyclisttrips);
         this.setState({womanCyclist: response.data[0].womancyclisttrips})
+        this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -144,6 +134,7 @@ export default class App extends React.Component {
       .then( (response) => {
         // console.log("axiosManTripsByIdFromAPI", response.data[0].mancyclisttrips);
         this.setState({manCyclist: response.data[0].mancyclisttrips})
+        this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -155,6 +146,7 @@ export default class App extends React.Component {
       .then( (response) => {
         // console.log("axiosUnknownGenderTripsByIdFromAPI", response.data[0].unknowngendercyclisttrips);
         this.setState({genderUnknownCyclist: response.data[0].unknowngendercyclisttrips})
+        this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -166,6 +158,7 @@ export default class App extends React.Component {
       .then( (response) => {
        // console.log("axiosFirstRideDateByIdFromAPI", response.data[0].firstridedate);
         this.setState({firstRideDate: response.data[0].firstridedate})
+        this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -177,6 +170,7 @@ export default class App extends React.Component {
       .then( (response) => {
        // console.log("axiosFirstRideTimeByIdFromAPI", response.data[0].firstridedate);
         this.setState({firstRideTime: response.data[0].firstridetime})
+        this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -188,6 +182,7 @@ export default class App extends React.Component {
       .then( (response) => {
        // console.log("axiosFirstRideDateByIdFromAPI", response.data[0].lastridedate);
         this.setState({lastRideDate: response.data[0].lastridedate})
+        this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -199,6 +194,7 @@ export default class App extends React.Component {
     .then( (response) => {
      // console.log("axiosFirstRideDateByIdFromAPI", response.data[0].lastridedate);
       this.setState({lastRideTime: response.data[0].lastridetime})
+      this.displayErrorOrDisplayResults()
     })
     .catch(function (error) {
       console.log(error);
@@ -210,6 +206,7 @@ export default class App extends React.Component {
       .then( (response) => {
        // console.log("axiosTotalTimeByIdFromAPI", response.data[0].totaltimeonroad);
         this.setState({totalTime: response.data[0].totaltimeonroad})
+        this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -221,6 +218,7 @@ export default class App extends React.Component {
       .then( (response) => {
        // console.log("axiosTotalDistanceByIdFromAPI", response.data[0].totaldistance );
         this.setState({totalDistance: response.data[0].totaldistance})
+        this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -232,6 +230,7 @@ export default class App extends React.Component {
       .then( (response) => {
        // console.log("axiosAvgDurationByIdFromAPI", response.data[0].avgtripduration );
         this.setState({avgTripDurationById: response.data[0].avgtripdurationbyid})
+        this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -243,6 +242,7 @@ export default class App extends React.Component {
       .then( (response) => {
        // console.log("axiosTotalStationsByIdFromAPI", response.data[0].totalstations);
         this.setState({totalStations: response.data[0].totalstations})
+        this.displayErrorOrDisplayResults()
       })
       .catch( function (error) {
         console.log(error);
@@ -254,6 +254,7 @@ export default class App extends React.Component {
       .then( (response) => {
        // console.log("axiosTotalStationsByIdFromAPI", response.data[0].startstationname);
         this.setState({topStation: response.data[0].startstationname})
+        this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -311,6 +312,26 @@ export default class App extends React.Component {
      event.preventDefault();
      this.axiosUniqueBikesFromAPI();
    };
+
+  //  ==================================================================
+  //  Here is where we check if the user inputed a bikeId with a trip history.
+  //  If user chooses a dud bikeId, they are prompted to choose an other number.
+  //  Also, here is where we enable the spinner. When there's a response, (either
+  //  successful on not), loading is set to false, which dissables the spinner.
+  //  ==================================================================
+  displayErrorOrDisplayResults() {
+    let response = "response.data[0].totaltrips == 0"
+    if (this.response) {
+      this.setState({loading: false});
+      this.setState({bikeIdValid: false});
+      this.showErrorMessage();
+      } else {
+        this.setState({bikeIdValid: true})
+        this.setState({loading: false})
+        this.setState({bikeResultsPageDisplay: {'display': true}})
+        this.setState({bikeLookupPageDisplay: {'display': 'none'}})
+      }
+    };
 
   //  ==================================================================
   //  As soon as the user interacts with BikeSerchForm.js, the bikeId

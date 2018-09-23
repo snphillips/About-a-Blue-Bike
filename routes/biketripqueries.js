@@ -255,7 +255,7 @@ router.get("/avgtripdurationbyid/:bikeid", (request, response, next) => {
 //   const { bikeid } = request.params;
 //   pool.query(
 //     `SELECT ROUND(AVG (tripduration/60), 0)
-//      AS avgtripduration
+//      AS avgtripdurationmins
 //      FROM citibike_rides;`,
 //     (err, res) => {
 //       if (err) return next(err);
