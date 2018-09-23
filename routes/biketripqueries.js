@@ -19,7 +19,19 @@ router.get("/", (request, response, next) => {
 // Get all unique bikeIds
 router.get("/uniquebikes", (request, response, next) => {
   pool.query(
-    "SELECT DISTINCT bikeId FROM citibike_rides ORDER BY bikeId ASC;",
+    "SELECT DISTINCT bikeid FROM citibike_rides ORDER BY bikeId ASC;",
+    (err, res) => {
+      if (err) return next(err);
+
+      response.json(res.rows);
+    }
+  );
+});
+
+// Picks a random bikeId
+router.get("/randombikeid", (request, response, next) => {
+  pool.query(
+    "SELECT bikeid FROM citibike_rides ORDER BY random() LIMIT 1;",
     (err, res) => {
       if (err) return next(err);
 

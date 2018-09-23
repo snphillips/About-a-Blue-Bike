@@ -31,8 +31,10 @@ export default class App extends React.Component {
       totalStations:"totalStations_state",
       topStation:"topStation_state",
 
+      randomBikeId: '', //This is for the the randomly generated id button
       loading: false,
       bikeIdValid: true,
+
 
       homeDisplay: {"display": true},
       aboutDisplay: {"display": "none"},
@@ -94,6 +96,19 @@ export default class App extends React.Component {
       });
   }
 
+  axiosRandomBikeId(){
+    axios.get(`https://bluebikes.herokuapp.com/randombikeid`)
+          .then( (response) => {
+        console.log("axiosRandomBikeId:", response);
+        this.setState({randomBikeId: response.data[0].bikeid})
+        this.displayErrorOrDisplayResults()
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+ // Not actually using at the moment
   axiosAllBikeTripsByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/${this.state.bikeId}`)
       .then( (response) => {
