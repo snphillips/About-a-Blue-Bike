@@ -6,7 +6,7 @@ const router = Router();
 /* GET all trips. Max 5 for now */
 router.get("/", (request, response, next) => {
   pool.query(
-    "SELECT * FROM citibike_rides ORDER BY bikeid ASC LIMIT 50;",
+    "SELECT * FROM citibike_rides ORDER BY bikeid ASC LIMIT 5;",
     (err, res) => {
      console.log(err)
       if (err) return next(err);
@@ -17,6 +17,7 @@ router.get("/", (request, response, next) => {
 });
 
 // Get all unique bikeIds
+// This is helpful to have, though I'm not using at the moment
 router.get("/uniquebikes", (request, response, next) => {
   pool.query(
     "SELECT DISTINCT bikeid FROM citibike_rides ORDER BY bikeId ASC;",
@@ -29,7 +30,6 @@ router.get("/uniquebikes", (request, response, next) => {
 });
 
 // Picks a random bikeId
-// Takes a full 3 seconds. How can I speed this up?
 // Both queries work, however the second one is "less expensive" (faster)
 router.get("/randombikeid", (request, response, next) => {
   pool.query(

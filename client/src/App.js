@@ -100,7 +100,7 @@ export default class App extends React.Component {
   axiosRandomBikeId(){
     axios.get(`https://bluebikes.herokuapp.com/randombikeid`)
           .then( (response) => {
-        console.log("randomBikeId:", response.data[0].bikeid);
+        // console.log("randomBikeId:", response.data[0].bikeid);
         this.setState({randomBikeId: response.data[0].bikeid})
       })
       .catch(function (error) {
@@ -303,16 +303,15 @@ export default class App extends React.Component {
   //  Random bikeId number generator - in progress
   //  ==================================================================
   randomSubmit(event) {
-    console.log("randomSubmit button clicked.")
+    // console.log("randomSubmit button clicked.")
     event.preventDefault();
-    // this.axiosRandomBikeId();
     this.setState({loading: true});
     axios.get(`https://bluebikes.herokuapp.com/randombikeid`)
           .then( (response) => {
         this.setState({bikeId: response.data[0].bikeid})
         this.setState({loading: false});
-        console.log("Random BikeId:", response.data[0].bikeid);
-        console.log("the state of bikeId is :", this.state.bikeId);
+        // console.log("Random BikeId:", response.data[0].bikeid);
+        // console.log("the state of bikeId is :", this.state.bikeId);
       })
       .catch(function (error) {
         console.log(error);
@@ -326,7 +325,7 @@ export default class App extends React.Component {
   //  successful on not), loading is set to false, which dissables the spinner.
   //  ==================================================================
   displayErrorOrDisplayResults() {
-    let response = "response.data[0].totaltrips == 0"
+    let response = "response.data[0].firstridedate == 0"
     if (this.response) {
       this.setState({loading: false});
       this.setState({bikeIdValid: false});
