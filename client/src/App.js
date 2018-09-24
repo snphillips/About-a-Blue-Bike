@@ -306,9 +306,11 @@ export default class App extends React.Component {
     console.log("randomSubmit button clicked.")
     event.preventDefault();
     // this.axiosRandomBikeId();
+    this.setState({loading: true});
     axios.get(`https://bluebikes.herokuapp.com/randombikeid`)
           .then( (response) => {
         this.setState({bikeId: response.data[0].bikeid})
+        this.setState({loading: false});
         console.log("Random BikeId:", response.data[0].bikeid);
         console.log("the state of bikeId is :", this.state.bikeId);
       })
