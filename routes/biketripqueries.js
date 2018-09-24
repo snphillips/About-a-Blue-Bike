@@ -34,7 +34,7 @@ router.get("/uniquebikes", (request, response, next) => {
 router.get("/randombikeid", (request, response, next) => {
   pool.query(
     // "SELECT bikeid FROM citibike_rides ORDER BY random() LIMIT 1;",
-    "SELECT bikeid FROM citibike_rides OFFSET floor(random()*7833430) LIMIT 1;"
+    "SELECT bikeid FROM citibike_rides OFFSET floor(random()*7833430) LIMIT 1;",
     (err, res) => {
       if (err) return next(err);
       response.json(res.rows);
