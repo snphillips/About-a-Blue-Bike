@@ -30,9 +30,11 @@ router.get("/uniquebikes", (request, response, next) => {
 
 // Picks a random bikeId
 // Takes a full 3 seconds. How can I speed this up?
+// Both queries work, however the second one is "less expensive" (faster)
 router.get("/randombikeid", (request, response, next) => {
   pool.query(
-    "SELECT bikeid FROM citibike_rides ORDER BY random() LIMIT 1;",
+    // "SELECT bikeid FROM citibike_rides ORDER BY random() LIMIT 1;",
+    "SELECT bikeid FROM citibike_rides OFFSET floor(random()*7833430) LIMIT 1;"
     (err, res) => {
       if (err) return next(err);
       response.json(res.rows);

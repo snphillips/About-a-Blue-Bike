@@ -111,6 +111,7 @@ Buttons & Fields
 }
 
 input[type=number], select {
+  /*color: #bf220d;*/
   font-size: 18px;
   /*width: 25%;*/
   padding: 10px 12px;
@@ -119,6 +120,7 @@ input[type=number], select {
   /*border: 0px solid #ccc;*/
   border-radius: 4px;
   box-sizing: border-box;
+  width: 109px;
 }
 
 form {

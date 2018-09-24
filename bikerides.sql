@@ -31,6 +31,7 @@
 -- THE HARD WAY:
 -- 7) Start fresh by droppin current table:
 DROP TABLE citibike_rides;
+
 -- 8)
 CREATE TABLE citibike_rides (
   tripduration INTEGER,
