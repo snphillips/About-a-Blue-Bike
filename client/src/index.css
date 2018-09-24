@@ -22,6 +22,7 @@ body {
   font-family: 'Tajawal', sans-serif;
 }
 
+/* The title of the app*/
 h1 {
   color: #d2e7e8;
   padding: 0 0 10px 0;
@@ -29,12 +30,13 @@ h1 {
   font-family: 'Chewy', cursive;
 }
 
+/* Bicycle id: */
 h2 {
   color: #d2e7e8;
   font-size: 120%;
 }
 
-/*The headings on the results page*/
+/* The headings on the results page*/
 h3 {
   color: #d2e7e8;
   font-size: 110%;
@@ -150,7 +152,7 @@ Classes & IDs
 .citibike-data {
   font-size: 115%;
   /*color: #d2e7e8;*/
-  color: #d2e7e8;
+  color: #bcdbdc;
   /*font-style: italic;*/
 }
 
@@ -184,7 +186,47 @@ Classes & IDs
 
 /*The spinner. This is an nmp package.*/
 .sweet-loading {
-  margin: 10px 0;
+  margin: 10px;
+  display: inline-block;
+}
+
+
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+/*Small & Medium devices (768px and smaller) media query*/
+@media (max-width: 768px) {
+
+  /* This overrides the hideous iOS default button & form style*/
+  textarea,
+  input.text,
+  input[type="text"],
+  input[type="button"],
+  input[type="submit"],
+  .input-checkbox {
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  span.big-bike-id {
+
+    font-size: 130%;
+    font-weight: bold;
+  }
+
+  .citibike-data {
+    font-size: 125%;
+    font-weight: bold;
+  }
+
+
 }
 
 

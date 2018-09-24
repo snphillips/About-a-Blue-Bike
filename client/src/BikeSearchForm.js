@@ -45,11 +45,9 @@ export default class BikeSearchForm extends Component {
             placeholder="submit"
             onClick={this.props.handleSubmit}
           />
+          <ReactSpinner loading={this.props.loading} />
           </form>
 
-          <ReactSpinner
-            loading={this.props.loading}
-        />
 
 
       </div>

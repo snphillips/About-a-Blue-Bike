@@ -6,6 +6,7 @@ import Home from "./Home";
 import BikeLookupPage from "./BikeLookupPage";
 import BikeResults from "./BikeResults";
 // import axiosTotalNumTripsByIdFromAPI from "./ApiCalls";
+// import apiCalls from "./ApiCalls";
 // import axiosWomanTripsByIdFromAPI from "./ApiCalls";
 // import axiosManTripsByIdFromAPI from "./ApiCalls";
 
@@ -123,9 +124,10 @@ export default class App extends React.Component {
     this.setState({loading: true})
     axios.get(`https://bluebikes.herokuapp.com/totaltrips/${this.state.bikeId}`)
       .then( (response) => {
+        // let response = "response.data[0].totaltrips"
         // console.log("axiosTotalNumTripsByIdFromAPI", response.data[0].totaltrips);
         this.setState({totalTrips: response.data[0].totaltrips})
-        this.displayErrorOrDisplayResults()
+        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -135,9 +137,8 @@ export default class App extends React.Component {
   axiosWomanTripsByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/womancyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
-        // console.log("axiosWomanTripsByIdFromAPI",response.data[0].womancyclisttrips);
         this.setState({womanCyclist: response.data[0].womancyclisttrips})
-        this.displayErrorOrDisplayResults()
+        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -147,9 +148,8 @@ export default class App extends React.Component {
   axiosManTripsByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/mancyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
-        // console.log("axiosManTripsByIdFromAPI", response.data[0].mancyclisttrips);
         this.setState({manCyclist: response.data[0].mancyclisttrips})
-        this.displayErrorOrDisplayResults()
+        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -159,9 +159,8 @@ export default class App extends React.Component {
   axiosUnknownGenderTripsByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/unknowngendercyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
-        // console.log("axiosUnknownGenderTripsByIdFromAPI", response.data[0].unknowngendercyclisttrips);
         this.setState({genderUnknownCyclist: response.data[0].unknowngendercyclisttrips})
-        this.displayErrorOrDisplayResults()
+        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -171,9 +170,8 @@ export default class App extends React.Component {
   axiosFirstRideDateByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/firstridedate/${this.state.bikeId}`)
       .then( (response) => {
-       // console.log("axiosFirstRideDateByIdFromAPI", response.data[0].firstridedate);
         this.setState({firstRideDate: response.data[0].firstridedate})
-        this.displayErrorOrDisplayResults()
+        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -183,9 +181,8 @@ export default class App extends React.Component {
     axiosFirstRideTimeByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/firstridetime/${this.state.bikeId}`)
       .then( (response) => {
-       // console.log("axiosFirstRideTimeByIdFromAPI", response.data[0].firstridedate);
         this.setState({firstRideTime: response.data[0].firstridetime})
-        this.displayErrorOrDisplayResults()
+        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -195,9 +192,8 @@ export default class App extends React.Component {
   axiosLastRideDateByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/lastridedate/${this.state.bikeId}`)
       .then( (response) => {
-       // console.log("axiosFirstRideDateByIdFromAPI", response.data[0].lastridedate);
         this.setState({lastRideDate: response.data[0].lastridedate})
-        this.displayErrorOrDisplayResults()
+        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -207,9 +203,8 @@ export default class App extends React.Component {
   axiosLastRideTimeByIdFromAPI() {
   axios.get(`https://bluebikes.herokuapp.com/lastridetime/${this.state.bikeId}`)
     .then( (response) => {
-     // console.log("axiosFirstRideDateByIdFromAPI", response.data[0].lastridedate);
       this.setState({lastRideTime: response.data[0].lastridetime})
-      this.displayErrorOrDisplayResults()
+      // this.displayErrorOrDisplayResults()
     })
     .catch(function (error) {
       console.log(error);
@@ -219,9 +214,8 @@ export default class App extends React.Component {
   axiosTotalTimeByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/totaltime/${this.state.bikeId}`)
       .then( (response) => {
-       // console.log("axiosTotalTimeByIdFromAPI", response.data[0].totaltimeonroad);
         this.setState({totalTime: response.data[0].totaltimeonroad})
-        this.displayErrorOrDisplayResults()
+        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -231,9 +225,8 @@ export default class App extends React.Component {
   axiosTotalDistanceByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/totaldistance/${this.state.bikeId}`)
       .then( (response) => {
-       // console.log("axiosTotalDistanceByIdFromAPI", response.data[0].totaldistance );
         this.setState({totalDistance: response.data[0].totaldistance})
-        this.displayErrorOrDisplayResults()
+        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -243,9 +236,8 @@ export default class App extends React.Component {
   axiosAvgDurationByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/avgtripdurationbyid/${this.state.bikeId}`)
       .then( (response) => {
-       // console.log("axiosAvgDurationByIdFromAPI", response.data[0].avgtripduration );
         this.setState({avgTripDurationById: response.data[0].avgtripdurationbyid})
-        this.displayErrorOrDisplayResults()
+        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -255,9 +247,8 @@ export default class App extends React.Component {
   axiosTotalStationsByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/totalstations/${this.state.bikeId}`)
       .then( (response) => {
-       // console.log("axiosTotalStationsByIdFromAPI", response.data[0].totalstations);
         this.setState({totalStations: response.data[0].totalstations})
-        this.displayErrorOrDisplayResults()
+        // this.displayErrorOrDisplayResults()
       })
       .catch( function (error) {
         console.log(error);
@@ -267,10 +258,22 @@ export default class App extends React.Component {
     axiosTopStationByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/topstation/${this.state.bikeId}`)
       .then( (response) => {
-       // console.log("axiosTotalStationsByIdFromAPI", response.data[0].startstationname);
         this.setState({topStation: response.data[0].startstationname})
-        this.displayErrorOrDisplayResults()
+
+
+      if (response.data[0].startstationname == 0) {
+        this.setState({loading: false});
+        this.setState({bikeIdValid: false});
+        this.showErrorMessage();
+        } else {
+          this.setState({bikeIdValid: true})
+          this.setState({loading: false})
+          this.setState({bikeResultsPageDisplay: {'display': true}})
+          this.setState({bikeLookupPageDisplay: {'display': 'none'}})
+        }
       })
+
+
       .catch(function (error) {
         console.log(error);
       });
@@ -325,17 +328,18 @@ export default class App extends React.Component {
   //  successful on not), loading is set to false, which dissables the spinner.
   //  ==================================================================
   displayErrorOrDisplayResults() {
-    let response = "response.data[0].firstridedate == 0"
-    if (this.response) {
-      this.setState({loading: false});
-      this.setState({bikeIdValid: false});
-      this.showErrorMessage();
-      } else {
-        this.setState({bikeIdValid: true})
-        this.setState({loading: false})
-        this.setState({bikeResultsPageDisplay: {'display': true}})
-        this.setState({bikeLookupPageDisplay: {'display': 'none'}})
-      }
+    // let response = "response.data[0].firstridedate == 0"
+    // console.log(this.response)
+    // if (this.response == 0) {
+    //   this.setState({loading: false});
+    //   this.setState({bikeIdValid: false});
+    //   this.showErrorMessage();
+    //   } else {
+    //     this.setState({bikeIdValid: true})
+    //     this.setState({loading: false})
+    //     this.setState({bikeResultsPageDisplay: {'display': true}})
+    //     this.setState({bikeLookupPageDisplay: {'display': 'none'}})
+    //   }
     };
 
   //  ==================================================================

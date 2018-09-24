@@ -14,7 +14,7 @@ export default class ReactSpinner extends React.Component {
   render() {
     // console.log(this.props.loading)
     return (
-      <div className='sweet-loading' >
+      <span className='sweet-loading' >
         <SyncLoader
           className={override}
           sizeUnit={"px"}
@@ -23,7 +23,7 @@ export default class ReactSpinner extends React.Component {
           // color={'#1884c7'}
           loading={this.props.loading}
         />
-      </div>
+      </span>
     )
   }
 }
