@@ -32,10 +32,8 @@ export default class App extends React.Component {
       totalStations:"totalStations_state",
       topStation:"topStation_state",
 
-      randomBikeId:"randomBikeId_state", //This is for the the randomly generated id button
-      loading: false,
+      loading: false, // the loading spinner
       bikeIdValid: true,
-
 
       homeDisplay: {"display": true},
       aboutDisplay: {"display": "none"},
@@ -124,10 +122,8 @@ export default class App extends React.Component {
     this.setState({loading: true})
     axios.get(`https://bluebikes.herokuapp.com/totaltrips/${this.state.bikeId}`)
       .then( (response) => {
-        // let response = "response.data[0].totaltrips"
         // console.log("axiosTotalNumTripsByIdFromAPI", response.data[0].totaltrips);
         this.setState({totalTrips: response.data[0].totaltrips})
-        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -222,12 +218,25 @@ export default class App extends React.Component {
       });
   }
 
+  // Here is where we check if the user inputed a bikeId with a trip history.
+  // If user chooses a dud bikeId, they are prompted to choose an other number.
   axiosTotalDistanceByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/totaldistance/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({totalDistance: response.data[0].totaldistance})
         // this.displayErrorOrDisplayResults()
+          if (response.data[0].totaldistance == 0) {
+            this.setState({loading: false});
+            this.setState({bikeIdValid: false});
+            this.showErrorMessage();
+          } else {
+            this.setState({bikeIdValid: true})
+            this.setState({loading: false})
+            this.setState({bikeResultsPageDisplay: {'display': true}})
+            this.setState({bikeLookupPageDisplay: {'display': 'none'}})
+          }
       })
+
       .catch(function (error) {
         console.log(error);
       });
@@ -258,22 +267,9 @@ export default class App extends React.Component {
     axiosTopStationByIdFromAPI() {
     axios.get(`https://bluebikes.herokuapp.com/topstation/${this.state.bikeId}`)
       .then( (response) => {
+       // console.log("axiosTotalStationsByIdFromAPI", response.data[0].startstationname);
         this.setState({topStation: response.data[0].startstationname})
-
-
-      if (response.data[0].startstationname == 0) {
-        this.setState({loading: false});
-        this.setState({bikeIdValid: false});
-        this.showErrorMessage();
-        } else {
-          this.setState({bikeIdValid: true})
-          this.setState({loading: false})
-          this.setState({bikeResultsPageDisplay: {'display': true}})
-          this.setState({bikeLookupPageDisplay: {'display': 'none'}})
-        }
       })
-
-
       .catch(function (error) {
         console.log(error);
       });
@@ -306,15 +302,13 @@ export default class App extends React.Component {
   //  Random bikeId number generator - in progress
   //  ==================================================================
   randomSubmit(event) {
-    // console.log("randomSubmit button clicked.")
     event.preventDefault();
+    this.setState({bikeIdValid: true})
     this.setState({loading: true});
     axios.get(`https://bluebikes.herokuapp.com/randombikeid`)
           .then( (response) => {
-        this.setState({bikeId: response.data[0].bikeid})
-        this.setState({loading: false});
-        // console.log("Random BikeId:", response.data[0].bikeid);
-        // console.log("the state of bikeId is :", this.state.bikeId);
+            this.setState({bikeId: response.data[0].bikeid})
+            this.setState({loading: false});
       })
       .catch(function (error) {
         console.log(error);
