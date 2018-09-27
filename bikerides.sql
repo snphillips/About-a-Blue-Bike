@@ -110,3 +110,10 @@ OR (startstationname = endstationname AND tripduration < 90); --less than 1.5 mi
 
 CREATE INDEX index ON citibike_rides (bikeid);
 
+
+
+
+
+
+
+
