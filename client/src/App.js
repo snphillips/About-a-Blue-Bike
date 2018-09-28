@@ -5,10 +5,6 @@ import Home from "./Home";
 // import About from "./About";
 import BikeLookupPage from "./BikeLookupPage";
 import BikeResults from "./BikeResults";
-// import axiosTotalNumTripsByIdFromAPI from "./ApiCalls";
-// import apiCalls from "./ApiCalls";
-// import axiosWomanTripsByIdFromAPI from "./ApiCalls";
-// import axiosManTripsByIdFromAPI from "./ApiCalls";
 
 
 export default class App extends React.Component {
@@ -16,6 +12,8 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
+      // dataSource: "https://bluebikes.herokuapp.com", // what is serving the data
+      dataSource: "http://localhost:4000", // what is serving the data
       bikeId: "bikeId_initial_state",
       totalTrips: "totalTrips_state",
       womanCyclist: "womanCyclist_state",
@@ -53,21 +51,25 @@ export default class App extends React.Component {
     this.allAPICalls = this.allAPICalls.bind(this);
     this.axiosUniqueBikesFromAPI = this.axiosUniqueBikesFromAPI.bind(this);
     this.displayErrorOrDisplayResults = this.displayErrorOrDisplayResults.bind(this);
-    this.axiosRandomBikeId = this.axiosRandomBikeId.bind(this);
     this.randomSubmit = this.randomSubmit.bind(this);
-    // this.whatIsHost = this.whatIsHost.bind(this);
+    this.whatIsDataHost = this.whatIsDataHost.bind(this);
+
+    // const dataSource = "https://bluebikes.herokuapp.com"
 
   }
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   // End of constructor
   // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  // Not working
-  // whatIsHost(){
-  //   let host = process.env.NODE_ENV === 'production' ?
-  //   "https://bluebikes.herokuapp.com/":
-  //   'http://localhost:4000';
-  //   console.log("The process.env.NODE_ENV is:", process.env.NODE_ENV,  "is and The host is:", host)
-  // }
+  // TODO: test to get this working
+    whatIsDataHost(){
+      console.log("Hello from inside whatisHost() this.state.dataSource is:", this.state.dataSource)
+      console.log("Hello from inside whatisHost() process.env.NODE_ENV is:", process.env.NODE_ENV)
+    if (process.env.NODE_ENV === 'production')  {
+      this.setState({dataSource: "https://bluebikes.herokuapp.com"})
+      } else {
+        this.setState({dataSource: "http://localhost:4000"})
+      }
+    }
 
   //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   //  The API calls from the client.
@@ -76,7 +78,7 @@ export default class App extends React.Component {
   // Is limited by query max set in server.
   // To adjust, visit biketripqueries.js in the Router folder
   axiosAllBikeTripsFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com`)
+    axios.get(this.state.dataSource)
       .then( (response) => {
         // console.log("axiosAllBikeTripsFromAPI", response);
       })
@@ -87,7 +89,7 @@ export default class App extends React.Component {
 
 // Not using for anything at the moment
   axiosUniqueBikesFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/uniquebikes`)
+    axios.get(this.state.dataSource +`/uniquebikes`)
       .then( (response) => {
         // console.log("axiosUniqueBikesFromAPI:", response);
       })
@@ -96,16 +98,6 @@ export default class App extends React.Component {
       });
   }
 
-  axiosRandomBikeId(){
-    axios.get(`https://bluebikes.herokuapp.com/randombikeid`)
-          .then( (response) => {
-        // console.log("randomBikeId:", response.data[0].bikeid);
-        this.setState({randomBikeId: response.data[0].bikeid})
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
 
  // Not using at the moment
   axiosAllBikeTripsByIdFromAPI() {
@@ -119,10 +111,11 @@ export default class App extends React.Component {
   }
 
   axiosTotalNumTripsByIdFromAPI() {
+    console.log("this.state.dataSource is :" , this.state.dataSource)
     this.setState({loading: true})
-    axios.get(`https://bluebikes.herokuapp.com/totaltrips/${this.state.bikeId}`)
+    axios.get(this.state.dataSource +`/totaltrips/${this.state.bikeId}`)
       .then( (response) => {
-        // console.log("axiosTotalNumTripsByIdFromAPI", response.data[0].totaltrips);
+        console.log("axiosTotalNumTripsByIdFromAPI", response.data[0].totaltrips);
         this.setState({totalTrips: response.data[0].totaltrips})
       })
       .catch(function (error) {
@@ -131,7 +124,7 @@ export default class App extends React.Component {
   }
 
   axiosWomanTripsByIdFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/womancyclisttrips/${this.state.bikeId}`)
+    axios.get(this.state.dataSource +`/womancyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({womanCyclist: response.data[0].womancyclisttrips})
         // this.displayErrorOrDisplayResults()
@@ -142,7 +135,7 @@ export default class App extends React.Component {
   }
 
   axiosManTripsByIdFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/mancyclisttrips/${this.state.bikeId}`)
+    axios.get(this.state.dataSource +`/mancyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({manCyclist: response.data[0].mancyclisttrips})
         // this.displayErrorOrDisplayResults()
@@ -153,7 +146,7 @@ export default class App extends React.Component {
   }
 
   axiosUnknownGenderTripsByIdFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/unknowngendercyclisttrips/${this.state.bikeId}`)
+    axios.get(this.state.dataSource +`/unknowngendercyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({genderUnknownCyclist: response.data[0].unknowngendercyclisttrips})
         // this.displayErrorOrDisplayResults()
@@ -164,7 +157,7 @@ export default class App extends React.Component {
   }
 
   axiosFirstRideDateByIdFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/firstridedate/${this.state.bikeId}`)
+    axios.get(this.state.dataSource +`/firstridedate/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({firstRideDate: response.data[0].firstridedate})
         // this.displayErrorOrDisplayResults()
@@ -175,7 +168,7 @@ export default class App extends React.Component {
   }
 
     axiosFirstRideTimeByIdFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/firstridetime/${this.state.bikeId}`)
+    axios.get(this.state.dataSource +`/firstridetime/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({firstRideTime: response.data[0].firstridetime})
         // this.displayErrorOrDisplayResults()
@@ -186,7 +179,7 @@ export default class App extends React.Component {
   }
 
   axiosLastRideDateByIdFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/lastridedate/${this.state.bikeId}`)
+    axios.get(this.state.dataSource +`/lastridedate/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({lastRideDate: response.data[0].lastridedate})
         // this.displayErrorOrDisplayResults()
@@ -197,7 +190,7 @@ export default class App extends React.Component {
   }
 
   axiosLastRideTimeByIdFromAPI() {
-  axios.get(`https://bluebikes.herokuapp.com/lastridetime/${this.state.bikeId}`)
+  axios.get(this.state.dataSource +`/lastridetime/${this.state.bikeId}`)
     .then( (response) => {
       this.setState({lastRideTime: response.data[0].lastridetime})
       // this.displayErrorOrDisplayResults()
@@ -208,7 +201,7 @@ export default class App extends React.Component {
 }
 
   axiosTotalTimeByIdFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/totaltime/${this.state.bikeId}`)
+    axios.get(this.state.dataSource +`/totaltime/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({totalTime: response.data[0].totaltimeonroad})
         // this.displayErrorOrDisplayResults()
@@ -221,7 +214,7 @@ export default class App extends React.Component {
   // Here is where we check if the user inputed a bikeId with a trip history.
   // If user chooses a dud bikeId, they are prompted to choose an other number.
   axiosTotalDistanceByIdFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/totaldistance/${this.state.bikeId}`)
+    axios.get(this.state.dataSource +`/totaldistance/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({totalDistance: response.data[0].totaldistance})
         // this.displayErrorOrDisplayResults()
@@ -243,7 +236,7 @@ export default class App extends React.Component {
   }
 
   axiosAvgDurationByIdFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/avgtripdurationbyid/${this.state.bikeId}`)
+    axios.get(this.state.dataSource +`/avgtripdurationbyid/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({avgTripDurationById: response.data[0].avgtripdurationbyid})
         // this.displayErrorOrDisplayResults()
@@ -254,7 +247,7 @@ export default class App extends React.Component {
   }
 
   axiosTotalStationsByIdFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/totalstations/${this.state.bikeId}`)
+    axios.get(this.state.dataSource +`/totalstations/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({totalStations: response.data[0].totalstations})
         // this.displayErrorOrDisplayResults()
@@ -265,7 +258,7 @@ export default class App extends React.Component {
   }
 
     axiosTopStationByIdFromAPI() {
-    axios.get(`https://bluebikes.herokuapp.com/topstation/${this.state.bikeId}`)
+    axios.get(this.state.dataSource +`/topstation/${this.state.bikeId}`)
       .then( (response) => {
        // console.log("axiosTotalStationsByIdFromAPI", response.data[0].startstationname);
         this.setState({topStation: response.data[0].startstationname})
@@ -302,10 +295,11 @@ export default class App extends React.Component {
   //  Random bikeId number generator - in progress
   //  ==================================================================
   randomSubmit(event) {
+    this.whatIsHost();
     event.preventDefault();
     this.setState({bikeIdValid: true})
     this.setState({loading: true});
-    axios.get(`https://bluebikes.herokuapp.com/randombikeid`)
+    axios.get(this.state.dataSource +`/randombikeid`)
           .then( (response) => {
             this.setState({bikeId: response.data[0].bikeid})
             this.setState({loading: false});

@@ -311,28 +311,19 @@ router.get("/topstation/:bikeid", (request, response, next) => {
   );
 });
 
-// All queries except for top station visited.
-// Error message: "subquery must return only one column."
-// And I need the column COUNT in addition to startstationname
-router.get("/allqueries/:bikeid", (request, response, next) => {
+// Many of the more simple queries in one place
+router.get("/simplequeries/:bikeid", (request, response, next) => {
   const { bikeid } = request.params;
   pool.query(
-    `CREATE TABLE bikeid_stats AS
-  SELECT
-   (SELECT COUNT(*) FROM citibike_rides WHERE bikeid = $1) AS totaltrips,
-   (SELECT COUNT (gender) FROM citibike_rides WHERE bikeid = $1 AND gender = 2) AS womancyclisttrips,
-   (SELECT COUNT (gender) FROM citibike_rides WHERE bikeid = $1 AND gender = 1) AS mancyclisttrips,
-   (SELECT COUNT (gender) FROM citibike_rides WHERE bikeid = $1 AND gender = 0) AS unknowngendercyclisttrips,
-   (SELECT to_char(starttime, 'YYYY-MM-DD') FROM citibike_rides WHERE bikeid = $1 ORDER BY starttime ASC LIMIT 1) AS firstridedate,
-   (SELECT to_char(starttime, 'HH12:MM AM') FROM citibike_rides WHERE bikeid = $1 ORDER BY starttime ASC LIMIT 1) AS firstridetime,
-   (SELECT to_char(starttime, 'YYYY-MM-DD') FROM citibike_rides WHERE bikeid = $1 ORDER BY starttime DESC LIMIT 1) AS lastridedate,
-   (SELECT to_char(starttime, 'HH12:MM AM') FROM citibike_rides WHERE bikeid = $1 ORDER BY starttime DESC LIMIT 1) AS lastridetime,
-   (SELECT SUM(tripduration)/3600 FROM citibike_rides WHERE bikeid = $1) AS totaltimeonroad,
-   (SELECT ROUND((SUM(tripduration)/3600)*7.456, 0) FROM citibike_rides WHERE bikeid = $1) AS totaldistance,
-   (SELECT ROUND(AVG (tripduration/60), 0) FROM citibike_rides WHERE bikeid = $1) AS avgtripdurationbyid,
-   (SELECT COUNT (DISTINCT startstationname) FROM citibike_rides WHERE bikeid = $1) AS totalstations,
-   (SELECT startstationname FROM citibike_rides WHERE bikeid = $1 ORDER BY startstationname DESC LIMIT 1) AS topstation,
-   (SELECT COUNT (startstationname) FROM citibike_rides WHERE bikeid = $1 GROUP BY startstationname ORDER BY COUNT DESC LIMIT 1);`, [bikeid],
+    `SELECT
+    COUNT(*) AS totaltrips,
+    MIN (starttime) AS firstridedate,
+    MAX (starttime) AS lastridedate,
+    SUM(tripduration)/3600 AS totaltimeonroad,
+    ROUND((SUM(tripduration)/3600)*7.456, 0) AS totaldistance,
+    ROUND(AVG (tripduration/60), 1) AS avgtripdurationbyid,
+    COUNT (DISTINCT startstationname) AS totalstations
+    FROM citibike_rides WHERE bikeid = $1;`, [bikeid],
     (err, res) => {
       if (err) return next(err);
       response.json(res.rows);
@@ -341,6 +332,13 @@ router.get("/allqueries/:bikeid", (request, response, next) => {
 });
 
 module.exports = router;
+
+
+// COUNT (gender) AS womancyclisttrips,
+// COUNT (gender) AS mancyclisttrips,
+// COUNT (gender) AS unknowngendercyclisttrips,
+// COUNT (startstationname) AS topstationvisits
+
 
 
 

@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 
-//  Ideally the axios calls can be removed from the App.js
+//  Ideally the axios calls can be removed from the App.js to keep things tidy
 //  Not working yet. Why?
 
 
@@ -25,7 +25,4 @@ import axios from "axios";
 
 export default
   axiosTotalNumTripsByIdFromAPI;
-  // apiCalls;
-  // axiosWomanTripsByIdFromAPI;
-  // axiosManTripsByIdFromAPI;
-  // axiosUnknownGenderTripsByIdFromAPI;
+
