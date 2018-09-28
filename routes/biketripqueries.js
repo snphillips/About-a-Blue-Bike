@@ -86,22 +86,6 @@ router.get("/totaltrips/:bikeid", (request, response, next) => {
 });
 
 
-// Women Cyclists total DOES NOT WORK (query works in psql)
-// Error 22P02 "invalid_text_representation"
-// Not actively using this query
-// router.get("/womancyclisttrips", (request, response, next) => {
-//   pool.query(
-//     `SELECT COUNT (gender)
-//     AS womancyclisttrips
-//     FROM citibike_rides
-//     WHERE gender = 2;`,
-//     (err, res) => {
-//       if (err) return next(err);
-//       response.json(res.rows);
-//     }
-//   );
-// });
-
 // Woman Cyclists, works
 router.get("/womancyclisttrips/:bikeid", (request, response, next) => {
   const { bikeid } = request.params;
@@ -311,19 +295,23 @@ router.get("/topstation/:bikeid", (request, response, next) => {
   );
 });
 
-// Many of the more simple queries in one place
+// Many of the more simple queries, in one place
+// Not here: womancyclisttrips, mancyclisttrips, unknowngendercyclisttrips
+// topstation, topstationvisits
 router.get("/simplequeries/:bikeid", (request, response, next) => {
   const { bikeid } = request.params;
   pool.query(
     `SELECT
-    COUNT(*) AS totaltrips,
-    MIN (starttime) AS firstridedate,
-    MAX (starttime) AS lastridedate,
-    SUM(tripduration)/3600 AS totaltimeonroad,
-    ROUND((SUM(tripduration)/3600)*7.456, 0) AS totaldistance,
-    ROUND(AVG (tripduration/60), 1) AS avgtripdurationbyid,
-    COUNT (DISTINCT startstationname) AS totalstations
-    FROM citibike_rides WHERE bikeid = $1;`, [bikeid],
+      COUNT(*) AS totaltrips,
+      MIN (starttime) AS firstridedate,
+      MIN (starttime) AS firstridetime,
+      MAX (starttime) AS lastridedate,
+      MAX (starttime) AS lastridetime,
+      SUM(tripduration)/3600 AS totaltimeonroad,
+      ROUND((SUM(tripduration)/3600)*7.456, 0) AS totaldistance,
+      ROUND(AVG (tripduration/60), 1) AS avgtripdurationbyid,
+      COUNT (DISTINCT startstationname) AS totalstations
+      FROM citibike_rides WHERE bikeid = $1;`, [bikeid],
     (err, res) => {
       if (err) return next(err);
       response.json(res.rows);

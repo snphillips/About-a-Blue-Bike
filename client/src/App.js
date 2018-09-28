@@ -12,8 +12,9 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      // dataSource: "https://bluebikes.herokuapp.com", // what is serving the data
-      dataSource: "http://localhost:4000", // what is serving the data
+      // dataSource: "https://bluebikes.herokuapp.com", // what is serving the data?
+      dataSource: "http://localhost:4000", // what is serving the data?
+
       bikeId: "bikeId_initial_state",
       totalTrips: "totalTrips_state",
       womanCyclist: "womanCyclist_state",
@@ -31,7 +32,7 @@ export default class App extends React.Component {
       topStation:"topStation_state",
 
       loading: false, // the loading spinner
-      bikeIdValid: true,
+      bikeIdValid: true, // if false, an alert is triggered
 
       homeDisplay: {"display": true},
       aboutDisplay: {"display": "none"},
@@ -54,13 +55,14 @@ export default class App extends React.Component {
     this.randomSubmit = this.randomSubmit.bind(this);
     this.whatIsDataHost = this.whatIsDataHost.bind(this);
 
-    // const dataSource = "https://bluebikes.herokuapp.com"
 
   }
-  // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // *******************************************************************
   // End of constructor
-  // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-  // TODO: test to get this working
+  // *******************************************************************
+
+
+  // TODO: test this in production
     whatIsDataHost(){
       console.log("Hello from inside whatisHost() this.state.dataSource is:", this.state.dataSource)
       console.log("Hello from inside whatisHost() process.env.NODE_ENV is:", process.env.NODE_ENV)
@@ -75,7 +77,7 @@ export default class App extends React.Component {
   //  The API calls from the client.
   //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  // Is limited by query max set in server.
+  // The result is limited by query max set in server.
   // To adjust, visit biketripqueries.js in the Router folder
   axiosAllBikeTripsFromAPI() {
     axios.get(this.state.dataSource)
@@ -87,19 +89,20 @@ export default class App extends React.Component {
       });
   }
 
-// Not using for anything at the moment
+// Not using for anything at the moment, though keep b/c is useful
   axiosUniqueBikesFromAPI() {
-    axios.get(this.state.dataSource +`/uniquebikes`)
-      .then( (response) => {
-        // console.log("axiosUniqueBikesFromAPI:", response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    // axios.get(this.state.dataSource +`/uniquebikes`)
+    //   .then( (response) => {
+    //     // console.log("axiosUniqueBikesFromAPI:", response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   }
 
 
  // Not using at the moment
+ // Returns all trip data
   axiosAllBikeTripsByIdFromAPI() {
     // axios.get(`https://bluebikes.herokuapp.com/${this.state.bikeId}`)
     //   .then( (response) => {
@@ -111,7 +114,6 @@ export default class App extends React.Component {
   }
 
   axiosTotalNumTripsByIdFromAPI() {
-    console.log("this.state.dataSource is :" , this.state.dataSource)
     this.setState({loading: true})
     axios.get(this.state.dataSource +`/totaltrips/${this.state.bikeId}`)
       .then( (response) => {
@@ -213,6 +215,7 @@ export default class App extends React.Component {
 
   // Here is where we check if the user inputed a bikeId with a trip history.
   // If user chooses a dud bikeId, they are prompted to choose an other number.
+  // Also, the loading spinner is enabled & dissabled here
   axiosTotalDistanceByIdFromAPI() {
     axios.get(this.state.dataSource +`/totaldistance/${this.state.bikeId}`)
       .then( (response) => {
@@ -257,11 +260,31 @@ export default class App extends React.Component {
       });
   }
 
-    axiosTopStationByIdFromAPI() {
+  axiosTopStationByIdFromAPI() {
     axios.get(this.state.dataSource +`/topstation/${this.state.bikeId}`)
       .then( (response) => {
        // console.log("axiosTotalStationsByIdFromAPI", response.data[0].startstationname);
         this.setState({topStation: response.data[0].startstationname})
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+// Some of the simple queries all in one place
+  axiosSimpleQueriesByIdFromAPI() {
+    axios.get(this.state.dataSource +`/simplequeries/${this.state.bikeId}`)
+      .then( (response) => {
+        console.log(response.data[0].simplequeries);
+        this.setState({totalTrips: response.data[0].totaltrips})
+        this.setState({firstRideDate: response.data[0].firstridedate})
+        this.setState({lastRideDate: response.data[0].lastridedate})
+        this.setState({firstRideTime: response.data[0].firstridetime})
+        this.setState({lastRideTime: response.data[0].lastridetime})
+        this.setState({totalTime: response.data[0].totaltimeonroad})
+        this.setState({totalDistance: response.data[0].totaldistance})
+        this.setState({avgTripDurationById: response.data[0].avgtripdurationbyid})
+        this.setState({totalStations: response.data[0].totalstations})
       })
       .catch(function (error) {
         console.log(error);
@@ -295,8 +318,8 @@ export default class App extends React.Component {
   //  Random bikeId number generator - in progress
   //  ==================================================================
   randomSubmit(event) {
-    this.whatIsHost();
     event.preventDefault();
+    this.whatIsDataHost();
     this.setState({bikeIdValid: true})
     this.setState({loading: true});
     axios.get(this.state.dataSource +`/randombikeid`)
@@ -310,6 +333,7 @@ export default class App extends React.Component {
    };
 
   //  ==================================================================
+  //  NOT USING, HAS PROBLEMS.
   //  Here is where we check if the user inputed a bikeId with a trip history.
   //  If user chooses a dud bikeId, they are prompted to choose an other number.
   //  Also, here is where we enable the spinner. When there's a response, (either
