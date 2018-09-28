@@ -50,11 +50,9 @@ export default class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.allAPICalls = this.allAPICalls.bind(this);
-    this.axiosUniqueBikesFromAPI = this.axiosUniqueBikesFromAPI.bind(this);
     this.displayErrorOrDisplayResults = this.displayErrorOrDisplayResults.bind(this);
     this.randomSubmit = this.randomSubmit.bind(this);
     this.whatIsDataHost = this.whatIsDataHost.bind(this);
-
 
   }
   // *******************************************************************
@@ -89,47 +87,22 @@ export default class App extends React.Component {
       });
   }
 
-// Not using for anything at the moment, though keep b/c is useful
-  axiosUniqueBikesFromAPI() {
-    // axios.get(this.state.dataSource +`/uniquebikes`)
-    //   .then( (response) => {
-    //     // console.log("axiosUniqueBikesFromAPI:", response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-  }
 
-
- // Not using at the moment
- // Returns all trip data
-  axiosAllBikeTripsByIdFromAPI() {
-    // axios.get(`https://bluebikes.herokuapp.com/${this.state.bikeId}`)
-    //   .then( (response) => {
-    //     // console.log("axiosAllBikeTripsByIdFromAPI", response);
-    //   })
-    //   .catch( function (error) {
-    //     console.log(error);
-    //   });
-  }
-
-  axiosTotalNumTripsByIdFromAPI() {
-    this.setState({loading: true})
-    axios.get(this.state.dataSource +`/totaltrips/${this.state.bikeId}`)
-      .then( (response) => {
-        console.log("axiosTotalNumTripsByIdFromAPI", response.data[0].totaltrips);
-        this.setState({totalTrips: response.data[0].totaltrips})
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  // axiosTotalNumTripsByIdFromAPI() {
+  //   axios.get(this.state.dataSource +`/totaltrips/${this.state.bikeId}`)
+  //     .then( (response) => {
+  //       console.log("axiosTotalNumTripsByIdFromAPI", response.data[0].totaltrips);
+  //       this.setState({totalTrips: response.data[0].totaltrips})
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }
 
   axiosWomanTripsByIdFromAPI() {
     axios.get(this.state.dataSource +`/womancyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({womanCyclist: response.data[0].womancyclisttrips})
-        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -140,7 +113,6 @@ export default class App extends React.Component {
     axios.get(this.state.dataSource +`/mancyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({manCyclist: response.data[0].mancyclisttrips})
-        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
@@ -151,109 +123,87 @@ export default class App extends React.Component {
     axios.get(this.state.dataSource +`/unknowngendercyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({genderUnknownCyclist: response.data[0].unknowngendercyclisttrips})
-        // this.displayErrorOrDisplayResults()
       })
       .catch(function (error) {
         console.log(error);
       });
   }
 
-  axiosFirstRideDateByIdFromAPI() {
-    axios.get(this.state.dataSource +`/firstridedate/${this.state.bikeId}`)
-      .then( (response) => {
-        this.setState({firstRideDate: response.data[0].firstridedate})
-        // this.displayErrorOrDisplayResults()
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  // axiosFirstRideDateByIdFromAPI() {
+  //   axios.get(this.state.dataSource +`/firstridedate/${this.state.bikeId}`)
+  //     .then( (response) => {
+  //       this.setState({firstRideDate: response.data[0].firstridedate})
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }
 
-    axiosFirstRideTimeByIdFromAPI() {
-    axios.get(this.state.dataSource +`/firstridetime/${this.state.bikeId}`)
-      .then( (response) => {
-        this.setState({firstRideTime: response.data[0].firstridetime})
-        // this.displayErrorOrDisplayResults()
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+//     axiosFirstRideTimeByIdFromAPI() {
+//     axios.get(this.state.dataSource +`/firstridetime/${this.state.bikeId}`)
+//       .then( (response) => {
+//         this.setState({firstRideTime: response.data[0].firstridetime})
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//   }
 
-  axiosLastRideDateByIdFromAPI() {
-    axios.get(this.state.dataSource +`/lastridedate/${this.state.bikeId}`)
-      .then( (response) => {
-        this.setState({lastRideDate: response.data[0].lastridedate})
-        // this.displayErrorOrDisplayResults()
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+//   axiosLastRideDateByIdFromAPI() {
+//     axios.get(this.state.dataSource +`/lastridedate/${this.state.bikeId}`)
+//       .then( (response) => {
+//         this.setState({lastRideDate: response.data[0].lastridedate})
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//   }
 
-  axiosLastRideTimeByIdFromAPI() {
-  axios.get(this.state.dataSource +`/lastridetime/${this.state.bikeId}`)
-    .then( (response) => {
-      this.setState({lastRideTime: response.data[0].lastridetime})
-      // this.displayErrorOrDisplayResults()
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}
+//   axiosLastRideTimeByIdFromAPI() {
+//   axios.get(this.state.dataSource +`/lastridetime/${this.state.bikeId}`)
+//     .then( (response) => {
+//       this.setState({lastRideTime: response.data[0].lastridetime})
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//     });
+// }
 
-  axiosTotalTimeByIdFromAPI() {
-    axios.get(this.state.dataSource +`/totaltime/${this.state.bikeId}`)
-      .then( (response) => {
-        this.setState({totalTime: response.data[0].totaltimeonroad})
-        // this.displayErrorOrDisplayResults()
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+//   axiosTotalTimeByIdFromAPI() {
+//     axios.get(this.state.dataSource +`/totaltime/${this.state.bikeId}`)
+//       .then( (response) => {
+//         this.setState({totalTime: response.data[0].totaltimeonroad})
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//   }
 
-  // Here is where we check if the user inputed a bikeId with a trip history.
-  // If user chooses a dud bikeId, they are prompted to choose an other number.
-  // Also, the loading spinner is enabled & dissabled here
-  axiosTotalDistanceByIdFromAPI() {
-    axios.get(this.state.dataSource +`/totaldistance/${this.state.bikeId}`)
-      .then( (response) => {
-        this.setState({totalDistance: response.data[0].totaldistance})
-        // this.displayErrorOrDisplayResults()
-          if (response.data[0].totaldistance == 0) {
-            this.setState({loading: false});
-            this.setState({bikeIdValid: false});
-            this.showErrorMessage();
-          } else {
-            this.setState({bikeIdValid: true})
-            this.setState({loading: false})
-            this.setState({bikeResultsPageDisplay: {'display': true}})
-            this.setState({bikeLookupPageDisplay: {'display': 'none'}})
-          }
-      })
 
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+//   axiosTotalDistanceByIdFromAPI() {
+//     axios.get(this.state.dataSource +`/totaldistance/${this.state.bikeId}`)
+//       .then( (response) => {
+//         this.setState({totalDistance: response.data[0].totaldistance})
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//   }
 
-  axiosAvgDurationByIdFromAPI() {
-    axios.get(this.state.dataSource +`/avgtripdurationbyid/${this.state.bikeId}`)
-      .then( (response) => {
-        this.setState({avgTripDurationById: response.data[0].avgtripdurationbyid})
-        // this.displayErrorOrDisplayResults()
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+//   axiosAvgDurationByIdFromAPI() {
+//     axios.get(this.state.dataSource +`/avgtripdurationbyid/${this.state.bikeId}`)
+//       .then( (response) => {
+//         this.setState({avgTripDurationById: response.data[0].avgtripdurationbyid})
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//   }
 
   axiosTotalStationsByIdFromAPI() {
     axios.get(this.state.dataSource +`/totalstations/${this.state.bikeId}`)
       .then( (response) => {
         this.setState({totalStations: response.data[0].totalstations})
-        // this.displayErrorOrDisplayResults()
       })
       .catch( function (error) {
         console.log(error);
@@ -271,11 +221,14 @@ export default class App extends React.Component {
       });
   }
 
-// Some of the simple queries all in one place
+ // Some of the simple queries all in one place
+ // Here is where we check if the user inputed a bikeId with a trip history.
+ // If user chooses a dud bikeId, they are prompted to choose an other number.
+ // Also, the loading spinner is enabled & dissabled here
   axiosSimpleQueriesByIdFromAPI() {
+    this.setState({loading: true})
     axios.get(this.state.dataSource +`/simplequeries/${this.state.bikeId}`)
       .then( (response) => {
-        console.log(response.data[0].simplequeries);
         this.setState({totalTrips: response.data[0].totaltrips})
         this.setState({firstRideDate: response.data[0].firstridedate})
         this.setState({lastRideDate: response.data[0].lastridedate})
@@ -285,7 +238,19 @@ export default class App extends React.Component {
         this.setState({totalDistance: response.data[0].totaldistance})
         this.setState({avgTripDurationById: response.data[0].avgtripdurationbyid})
         this.setState({totalStations: response.data[0].totalstations})
+
+          if (response.data[0].totaldistance == 0) {
+            this.setState({loading: false});
+            this.setState({bikeIdValid: false});
+            this.showErrorMessage();
+          } else {
+            this.setState({bikeIdValid: true})
+            this.setState({loading: false})
+            this.setState({bikeResultsPageDisplay: {'display': true}})
+            this.setState({bikeLookupPageDisplay: {'display': 'none'}})
+          }
       })
+
       .catch(function (error) {
         console.log(error);
       });
@@ -298,20 +263,21 @@ export default class App extends React.Component {
   //  All the API calls from the client in one place
   //  ==================================================================
   allAPICalls() {
-    this.axiosAllBikeTripsByIdFromAPI();
-    this.axiosTotalNumTripsByIdFromAPI();
+    // this.axiosAllBikeTripsByIdFromAPI();
+    // this.axiosTotalNumTripsByIdFromAPI();
     this.axiosWomanTripsByIdFromAPI();
     this.axiosManTripsByIdFromAPI();
     this.axiosUnknownGenderTripsByIdFromAPI();
-    this.axiosFirstRideDateByIdFromAPI();
-    this.axiosFirstRideTimeByIdFromAPI()
-    this.axiosLastRideDateByIdFromAPI();
-    this.axiosLastRideTimeByIdFromAPI();
-    this.axiosTotalTimeByIdFromAPI();
-    this.axiosTotalDistanceByIdFromAPI();
-    this.axiosAvgDurationByIdFromAPI();
-    this.axiosTotalStationsByIdFromAPI();
+    // this.axiosFirstRideDateByIdFromAPI();
+    // this.axiosFirstRideTimeByIdFromAPI()
+    // this.axiosLastRideDateByIdFromAPI();
+    // this.axiosLastRideTimeByIdFromAPI();
+    // this.axiosTotalTimeByIdFromAPI();
+    // this.axiosTotalDistanceByIdFromAPI();
+    // this.axiosAvgDurationByIdFromAPI();
+    // this.axiosTotalStationsByIdFromAPI();
     this.axiosTopStationByIdFromAPI();
+    this.axiosSimpleQueriesByIdFromAPI()
   }
 
   //  ==================================================================
