@@ -303,15 +303,16 @@ router.get("/simplequeries/:bikeid", (request, response, next) => {
   pool.query(
     `SELECT
       COUNT(*) AS totaltrips,
-      MIN (starttime) AS firstridedate,
-      MIN (starttime) AS firstridetime,
-      MAX (starttime) AS lastridedate,
-      MAX (starttime) AS lastridetime,
+      MIN (to_char(starttime, 'YYYY-MM-DD')) AS firstridedate,
+      MIN (to_char(starttime, 'HH12:MM AM')) AS firstridetime,
+      MAX (to_char(starttime, 'YYYY-MM-DD')) AS lastridedate,
+      MAX (to_char(starttime, 'HH12:MM AM')) AS lastridetime,
       SUM(tripduration)/3600 AS totaltimeonroad,
       ROUND((SUM(tripduration)/3600)*7.456, 0) AS totaldistance,
       ROUND(AVG (tripduration/60), 1) AS avgtripdurationbyid,
       COUNT (DISTINCT startstationname) AS totalstations
-      FROM citibike_rides WHERE bikeid = $1;`, [bikeid],
+      FROM citibike_rides
+      WHERE bikeid = $1;`, [bikeid],
     (err, res) => {
       if (err) return next(err);
       response.json(res.rows);
@@ -322,6 +323,7 @@ router.get("/simplequeries/:bikeid", (request, response, next) => {
 module.exports = router;
 
 
+      // MIN (to_char(starttime, 'MM-DD-YYYY')) AS firstridedate,
 // COUNT (gender) AS womancyclisttrips,
 // COUNT (gender) AS mancyclisttrips,
 // COUNT (gender) AS unknowngendercyclisttrips,

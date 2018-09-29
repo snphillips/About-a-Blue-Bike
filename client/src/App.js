@@ -87,17 +87,41 @@ export default class App extends React.Component {
       });
   }
 
+ // Some of the simple queries all in one place
+ // Here is where we check if the user inputed a bikeId with a trip history.
+ // If user chooses a dud bikeId, they are prompted to choose an other number.
+ // Also, the loading spinner is enabled & dissabled here
+  axiosSimpleQueriesByIdFromAPI() {
+    this.setState({loading: true})
+    axios.get(this.state.dataSource +`/simplequeries/${this.state.bikeId}`)
+      .then( (response) => {
+        this.setState({totalTrips: response.data[0].totaltrips})
+        this.setState({firstRideDate: response.data[0].firstridedate})
+        this.setState({firstRideTime: response.data[0].firstridetime})
+        this.setState({lastRideDate: response.data[0].lastridedate})
+        this.setState({lastRideTime: response.data[0].lastridetime})
+        this.setState({totalTime: response.data[0].totaltimeonroad})
+        this.setState({totalDistance: response.data[0].totaldistance})
+        this.setState({avgTripDurationById: response.data[0].avgtripdurationbyid})
+        this.setState({totalStations: response.data[0].totalstations})
+        console.log(this.state.firstRideDate)
 
-  // axiosTotalNumTripsByIdFromAPI() {
-  //   axios.get(this.state.dataSource +`/totaltrips/${this.state.bikeId}`)
-  //     .then( (response) => {
-  //       console.log("axiosTotalNumTripsByIdFromAPI", response.data[0].totaltrips);
-  //       this.setState({totalTrips: response.data[0].totaltrips})
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
+          if (response.data[0].totaldistance == 0) {
+            this.setState({loading: false});
+            this.setState({bikeIdValid: false});
+            this.showErrorMessage();
+          } else {
+            this.setState({bikeIdValid: true})
+            this.setState({loading: false})
+            this.setState({bikeResultsPageDisplay: {'display': true}})
+            this.setState({bikeLookupPageDisplay: {'display': 'none'}})
+          }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
 
   axiosWomanTripsByIdFromAPI() {
     axios.get(this.state.dataSource +`/womancyclisttrips/${this.state.bikeId}`)
@@ -128,6 +152,38 @@ export default class App extends React.Component {
         console.log(error);
       });
   }
+
+  axiosTotalStationsByIdFromAPI() {
+    axios.get(this.state.dataSource +`/totalstations/${this.state.bikeId}`)
+      .then( (response) => {
+        this.setState({totalStations: response.data[0].totalstations})
+      })
+      .catch( function (error) {
+        console.log(error);
+      });
+  }
+
+  axiosTopStationByIdFromAPI() {
+    axios.get(this.state.dataSource +`/topstation/${this.state.bikeId}`)
+      .then( (response) => {
+       // console.log("axiosTotalStationsByIdFromAPI", response.data[0].startstationname);
+        this.setState({topStation: response.data[0].startstationname})
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  // axiosTotalNumTripsByIdFromAPI() {
+  //   axios.get(this.state.dataSource +`/totaltrips/${this.state.bikeId}`)
+  //     .then( (response) => {
+  //       console.log("axiosTotalNumTripsByIdFromAPI", response.data[0].totaltrips);
+  //       this.setState({totalTrips: response.data[0].totaltrips})
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }
+
 
   // axiosFirstRideDateByIdFromAPI() {
   //   axios.get(this.state.dataSource +`/firstridedate/${this.state.bikeId}`)
@@ -200,61 +256,7 @@ export default class App extends React.Component {
 //       });
 //   }
 
-  axiosTotalStationsByIdFromAPI() {
-    axios.get(this.state.dataSource +`/totalstations/${this.state.bikeId}`)
-      .then( (response) => {
-        this.setState({totalStations: response.data[0].totalstations})
-      })
-      .catch( function (error) {
-        console.log(error);
-      });
-  }
 
-  axiosTopStationByIdFromAPI() {
-    axios.get(this.state.dataSource +`/topstation/${this.state.bikeId}`)
-      .then( (response) => {
-       // console.log("axiosTotalStationsByIdFromAPI", response.data[0].startstationname);
-        this.setState({topStation: response.data[0].startstationname})
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
- // Some of the simple queries all in one place
- // Here is where we check if the user inputed a bikeId with a trip history.
- // If user chooses a dud bikeId, they are prompted to choose an other number.
- // Also, the loading spinner is enabled & dissabled here
-  axiosSimpleQueriesByIdFromAPI() {
-    this.setState({loading: true})
-    axios.get(this.state.dataSource +`/simplequeries/${this.state.bikeId}`)
-      .then( (response) => {
-        this.setState({totalTrips: response.data[0].totaltrips})
-        this.setState({firstRideDate: response.data[0].firstridedate})
-        this.setState({lastRideDate: response.data[0].lastridedate})
-        this.setState({firstRideTime: response.data[0].firstridetime})
-        this.setState({lastRideTime: response.data[0].lastridetime})
-        this.setState({totalTime: response.data[0].totaltimeonroad})
-        this.setState({totalDistance: response.data[0].totaldistance})
-        this.setState({avgTripDurationById: response.data[0].avgtripdurationbyid})
-        this.setState({totalStations: response.data[0].totalstations})
-
-          if (response.data[0].totaldistance == 0) {
-            this.setState({loading: false});
-            this.setState({bikeIdValid: false});
-            this.showErrorMessage();
-          } else {
-            this.setState({bikeIdValid: true})
-            this.setState({loading: false})
-            this.setState({bikeResultsPageDisplay: {'display': true}})
-            this.setState({bikeLookupPageDisplay: {'display': 'none'}})
-          }
-      })
-
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
   //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   //  The API calls END
   //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
