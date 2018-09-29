@@ -50,7 +50,7 @@ export default class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.allAPICalls = this.allAPICalls.bind(this);
-    this.displayErrorOrDisplayResults = this.displayErrorOrDisplayResults.bind(this);
+    // this.displayErrorOrDisplayResults = this.displayErrorOrDisplayResults.bind(this);
     this.randomSubmit = this.randomSubmit.bind(this);
     this.whatIsDataHost = this.whatIsDataHost.bind(this);
 
@@ -104,7 +104,6 @@ export default class App extends React.Component {
         this.setState({totalDistance: response.data[0].totaldistance})
         this.setState({avgTripDurationById: response.data[0].avgtripdurationbyid})
         this.setState({totalStations: response.data[0].totalstations})
-        console.log(this.state.firstRideDate)
 
           if (response.data[0].totaldistance == 0) {
             this.setState({loading: false});
@@ -166,7 +165,6 @@ export default class App extends React.Component {
   axiosTopStationByIdFromAPI() {
     axios.get(this.state.dataSource +`/topstation/${this.state.bikeId}`)
       .then( (response) => {
-       // console.log("axiosTotalStationsByIdFromAPI", response.data[0].startstationname);
         this.setState({topStation: response.data[0].startstationname})
       })
       .catch(function (error) {
@@ -256,7 +254,6 @@ export default class App extends React.Component {
 //       });
 //   }
 
-
   //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   //  The API calls END
   //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -265,25 +262,15 @@ export default class App extends React.Component {
   //  All the API calls from the client in one place
   //  ==================================================================
   allAPICalls() {
-    // this.axiosAllBikeTripsByIdFromAPI();
-    // this.axiosTotalNumTripsByIdFromAPI();
+    this.axiosSimpleQueriesByIdFromAPI()
     this.axiosWomanTripsByIdFromAPI();
     this.axiosManTripsByIdFromAPI();
     this.axiosUnknownGenderTripsByIdFromAPI();
-    // this.axiosFirstRideDateByIdFromAPI();
-    // this.axiosFirstRideTimeByIdFromAPI()
-    // this.axiosLastRideDateByIdFromAPI();
-    // this.axiosLastRideTimeByIdFromAPI();
-    // this.axiosTotalTimeByIdFromAPI();
-    // this.axiosTotalDistanceByIdFromAPI();
-    // this.axiosAvgDurationByIdFromAPI();
-    // this.axiosTotalStationsByIdFromAPI();
     this.axiosTopStationByIdFromAPI();
-    this.axiosSimpleQueriesByIdFromAPI()
   }
 
   //  ==================================================================
-  //  Random bikeId number generator - in progress
+  //  Random bikeId number generator button
   //  ==================================================================
   randomSubmit(event) {
     event.preventDefault();
@@ -299,28 +286,6 @@ export default class App extends React.Component {
         console.log(error);
       });
    };
-
-  //  ==================================================================
-  //  NOT USING, HAS PROBLEMS.
-  //  Here is where we check if the user inputed a bikeId with a trip history.
-  //  If user chooses a dud bikeId, they are prompted to choose an other number.
-  //  Also, here is where we enable the spinner. When there's a response, (either
-  //  successful on not), loading is set to false, which dissables the spinner.
-  //  ==================================================================
-  displayErrorOrDisplayResults() {
-    // let response = "response.data[0].firstridedate == 0"
-    // console.log(this.response)
-    // if (this.response == 0) {
-    //   this.setState({loading: false});
-    //   this.setState({bikeIdValid: false});
-    //   this.showErrorMessage();
-    //   } else {
-    //     this.setState({bikeIdValid: true})
-    //     this.setState({loading: false})
-    //     this.setState({bikeResultsPageDisplay: {'display': true}})
-    //     this.setState({bikeLookupPageDisplay: {'display': 'none'}})
-    //   }
-    };
 
   //  ==================================================================
   //  As soon as the user interacts with BikeSerchForm.js, the bikeId
@@ -340,7 +305,8 @@ export default class App extends React.Component {
   //  ==================================================================
    handleSubmit(event) {
      event.preventDefault();
-     this.allAPICalls()
+     this.whatIsDataHost();
+     this.allAPICalls();
    };
 
   //  ==================================================================
@@ -426,7 +392,6 @@ export default class App extends React.Component {
           randomSubmit={this.randomSubmit}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
-          randomSubmit={this.randomSubmit}
           />
 
         <BikeResults
