@@ -12,9 +12,7 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      // dataSource: "https://bluebikes.herokuapp.com", // what is serving the data?
-      dataSource: "http://localhost:4000", // what is serving the data?
-
+      dataSource: "https://bluebikes.herokuapp.com", // what is serving the data?
       bikeId: "bikeId_initial_state",
       totalTrips: "totalTrips_state",
       womanCyclist: "womanCyclist_state",
@@ -43,6 +41,7 @@ export default class App extends React.Component {
 
     // This binding is necessary to make `this` work in the callback
     // this.componentDidMount = this.componentDidMount.bind(this);
+    this.whatIsDataHost = this.whatIsDataHost.bind(this);
     this.homeNavItem = this.homeNavItem.bind(this);
     this.aboutNavItem = this.aboutNavItem.bind(this);
     this.lookupNavItem = this.lookupNavItem.bind(this);
@@ -50,26 +49,29 @@ export default class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.allAPICalls = this.allAPICalls.bind(this);
-    // this.displayErrorOrDisplayResults = this.displayErrorOrDisplayResults.bind(this);
     this.randomSubmit = this.randomSubmit.bind(this);
-    this.whatIsDataHost = this.whatIsDataHost.bind(this);
 
   }
-  // *******************************************************************
+  // *************************************************************
   // End of constructor
-  // *******************************************************************
+  // ************************************************************
 
-
-  // TODO: test this in production
+  //  ============================================================
+  //  TODO: fix this
+  //  This changes the data source depending on whether the site
+  //  is in production or development.
+  //  ============================================================
     whatIsDataHost(){
-      console.log("Hello from inside whatisHost() this.state.dataSource is:", this.state.dataSource)
-      console.log("Hello from inside whatisHost() process.env.NODE_ENV is:", process.env.NODE_ENV)
-    if (process.env.NODE_ENV === 'production')  {
-      this.setState({dataSource: "https://bluebikes.herokuapp.com"})
-      } else {
-        this.setState({dataSource: "http://localhost:4000"})
-      }
+    // if (process.env.NODE_ENV == 'development')  {
+    //   this.setState({dataSource: "http://localhost:4000" })
+    //   } else {
+    //     this.setState({dataSource: "https://bluebikes.herokuapp.com"})
+      // }
+
+      console.log("Hi from whatisHost process.env.NODE_ENV is:", process.env.NODE_ENV)
+      console.log("Hi from  whatisHost this.state.dataSource is:", this.state.dataSource)
     }
+
 
   //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   //  The API calls from the client.
@@ -77,17 +79,17 @@ export default class App extends React.Component {
 
   // The result is limited by query max set in server.
   // To adjust, visit biketripqueries.js in the Router folder
+  // Not using in app, but keep for testing purposes
   axiosAllBikeTripsFromAPI() {
     axios.get(this.state.dataSource)
       .then( (response) => {
-        // console.log("axiosAllBikeTripsFromAPI", response);
       })
       .catch(function (error) {
         console.log(error);
       });
   }
 
- // Some of the simple queries all in one place
+ // Some of the SIMPLE QUERIES all in one place
  // Here is where we check if the user inputed a bikeId with a trip history.
  // If user chooses a dud bikeId, they are prompted to choose an other number.
  // Also, the loading spinner is enabled & dissabled here
@@ -171,96 +173,13 @@ export default class App extends React.Component {
         console.log(error);
       });
   }
-  // axiosTotalNumTripsByIdFromAPI() {
-  //   axios.get(this.state.dataSource +`/totaltrips/${this.state.bikeId}`)
-  //     .then( (response) => {
-  //       console.log("axiosTotalNumTripsByIdFromAPI", response.data[0].totaltrips);
-  //       this.setState({totalTrips: response.data[0].totaltrips})
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
-
-
-  // axiosFirstRideDateByIdFromAPI() {
-  //   axios.get(this.state.dataSource +`/firstridedate/${this.state.bikeId}`)
-  //     .then( (response) => {
-  //       this.setState({firstRideDate: response.data[0].firstridedate})
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
-
-//     axiosFirstRideTimeByIdFromAPI() {
-//     axios.get(this.state.dataSource +`/firstridetime/${this.state.bikeId}`)
-//       .then( (response) => {
-//         this.setState({firstRideTime: response.data[0].firstridetime})
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   }
-
-//   axiosLastRideDateByIdFromAPI() {
-//     axios.get(this.state.dataSource +`/lastridedate/${this.state.bikeId}`)
-//       .then( (response) => {
-//         this.setState({lastRideDate: response.data[0].lastridedate})
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   }
-
-//   axiosLastRideTimeByIdFromAPI() {
-//   axios.get(this.state.dataSource +`/lastridetime/${this.state.bikeId}`)
-//     .then( (response) => {
-//       this.setState({lastRideTime: response.data[0].lastridetime})
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     });
-// }
-
-//   axiosTotalTimeByIdFromAPI() {
-//     axios.get(this.state.dataSource +`/totaltime/${this.state.bikeId}`)
-//       .then( (response) => {
-//         this.setState({totalTime: response.data[0].totaltimeonroad})
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   }
-
-
-//   axiosTotalDistanceByIdFromAPI() {
-//     axios.get(this.state.dataSource +`/totaldistance/${this.state.bikeId}`)
-//       .then( (response) => {
-//         this.setState({totalDistance: response.data[0].totaldistance})
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   }
-
-//   axiosAvgDurationByIdFromAPI() {
-//     axios.get(this.state.dataSource +`/avgtripdurationbyid/${this.state.bikeId}`)
-//       .then( (response) => {
-//         this.setState({avgTripDurationById: response.data[0].avgtripdurationbyid})
-//       })
-//       .catch(function (error) {
-//         console.log(error);
-//       });
-//   }
-
   //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   //  The API calls END
   //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  //  ==================================================================
+  //  =============================================================
   //  All the API calls from the client in one place
-  //  ==================================================================
+  //  =============================================================
   allAPICalls() {
     this.axiosSimpleQueriesByIdFromAPI()
     this.axiosWomanTripsByIdFromAPI();
@@ -269,9 +188,9 @@ export default class App extends React.Component {
     this.axiosTopStationByIdFromAPI();
   }
 
-  //  ==================================================================
+  //  ============================================================
   //  Random bikeId number generator button
-  //  ==================================================================
+  //  ============================================================
   randomSubmit(event) {
     event.preventDefault();
     this.whatIsDataHost();
@@ -291,7 +210,7 @@ export default class App extends React.Component {
   //  As soon as the user interacts with BikeSerchForm.js, the bikeId
   //  updates. The API calls happen once the user clicks
   //  the 'submit' button. The reason why we're setting bikeIdValid to true,
-  //  is so if the
+  //  is to disable the error message.
   //  ==================================================================
    handleChange(event) {
      this.setState({bikeIdValid: true})
@@ -301,7 +220,7 @@ export default class App extends React.Component {
   //  ==================================================================
   //  When the lookup button is clicked (on BikeSearchForm.js),
   //  the API calls are triggered all at once. See individual API calls
-  //  above.
+  //  above in allAPICalls();
   //  ==================================================================
    handleSubmit(event) {
      event.preventDefault();
@@ -342,7 +261,7 @@ export default class App extends React.Component {
     this.setState({aboutDisplay: {'display': 'none'}});
     this.setState({bikeLookupPageDisplay: {'display': 'none'}});
     this.setState({bikeResultsPageDisplay: {'display': 'none'}});
-  }
+  };
 
   aboutNavItem(event) {
     this.setState({bikeId: " "});
@@ -350,7 +269,7 @@ export default class App extends React.Component {
     this.setState({aboutDisplay: {'display': true}});
     this.setState({bikeLookupPageDisplay: {'display': 'none'}});
     this.setState({bikeResultsPageDisplay: {'display': 'none'}});
-  }
+  };
 
   lookupNavItem(event) {
     this.setState({bikeId: " "});
@@ -358,7 +277,7 @@ export default class App extends React.Component {
     this.setState({aboutDisplay: {'display': 'none'}});
     this.setState({bikeLookupPageDisplay: {'display': true}});
     this.setState({bikeResultsPageDisplay: {'display': 'none'}});
-  }
+  };
 
   //  ==================================================================
   //  And finally, the render

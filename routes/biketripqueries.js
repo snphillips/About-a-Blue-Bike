@@ -4,7 +4,7 @@ const pool = require("../config/connection");
 const router = Router();
 
 
-/* GET all trips. Max 5 for now */
+// GET all trips. Max 5 for now
 router.get("/", (request, response, next) => {
   pool.query(
     "SELECT * FROM citibike_rides ORDER BY bikeid ASC LIMIT 5;",
@@ -18,7 +18,7 @@ router.get("/", (request, response, next) => {
 });
 
 // *********************************************************
-// Many of the more simple queries, in one place
+// Many of the more SIMPLE QUERIES, in one place
 // Not here: womancyclisttrips, mancyclisttrips,
 // unknowngendercyclisttrips, topstation, topstationvisits
 // *********************************************************
@@ -37,23 +37,6 @@ router.get("/simplequeries/:bikeid", (request, response, next) => {
       COUNT (DISTINCT startstationname) AS totalstations
       FROM citibike_rides
       WHERE bikeid = $1;`, [bikeid],
-    (err, res) => {
-      if (err) return next(err);
-      response.json(res.rows);
-    }
-  );
-});
-
-
-router.get("/topstation/:bikeid", (request, response, next) => {
-  const { bikeid } = request.params;
-  pool.query(
-    `SELECT startstationname, COUNT (startstationname)
-     FROM citibike_rides
-     WHERE bikeid = $1
-     GROUP BY startstationname
-     ORDER BY count DESC
-     LIMIT 1;`, [bikeid],
     (err, res) => {
       if (err) return next(err);
       response.json(res.rows);
@@ -109,6 +92,21 @@ router.get("/unknowngendercyclisttrips/:bikeid", (request, response, next) => {
   );
 });
 
+router.get("/topstation/:bikeid", (request, response, next) => {
+  const { bikeid } = request.params;
+  pool.query(
+    `SELECT startstationname, COUNT (startstationname)
+     FROM citibike_rides
+     WHERE bikeid = $1
+     GROUP BY startstationname
+     ORDER BY count DESC
+     LIMIT 1;`, [bikeid],
+    (err, res) => {
+      if (err) return next(err);
+      response.json(res.rows);
+    }
+  );
+});
 // *********************************************************
 // Picks a random bikeId
 // Both queries work, however the second one is "less expensive" (faster)
