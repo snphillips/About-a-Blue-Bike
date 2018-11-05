@@ -29,5 +29,12 @@ I created a simple, clean user-friendly interface so that users feel welcome and
 - A form that allows users to input bike identification numbers
 - A results page that displays the data
 
+## Built With
+- Node/Express
+- React
+- Axios for API calls
+- client hosted with Heroku
+- server hosted with Surge
+
 ## Change Log
 -To avoid excessive hosting fees, I had to limit my table to contain 2018 data instead of the entire time CitiBike has been active. My current Heroku plan allows me to have 10, 000 000 lines. 
