@@ -6,6 +6,8 @@ Every Citibike has a unique identification number. Users of _About a Blue Bike_ 
 
 View the website here: https://aboutabluebike.surge.sh/
 
+![screenshot](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png)
+
 ## Background Research
 Many researchers and students have mined citibike data to create interesting projects:
 - https://nycdatascience.com/blog/student-works/citi-bike-riders-in-different-ages-the-potential-of-target-advertising/
