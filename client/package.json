@@ -6,9 +6,7 @@
     "cors": "^2.8.4",
     "csv-parse": "^2.5.0",
     "dotenv": "^6.0.0",
-    "plugins": [
-      "emotion"
-    ],
+    "plugins": ["emotion"],
     "presets": [
       "react",
       "env"

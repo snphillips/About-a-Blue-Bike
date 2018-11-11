@@ -7,14 +7,50 @@ import axios from "axios";
 
 
 
-  axiosTotalNumTripsByIdFromAPI() {
-    this.setState({loading: true})
-    axios.get(`https://bluebikes.herokuapp.com/totaltrips/${this.state.bikeId}`)
+  axiosWomanTripsByIdFromAPI() {
+    axios.get(this.state.dataSource +`/womancyclisttrips/${this.state.bikeId}`)
       .then( (response) => {
-        // let response = "response.data[0].totaltrips"
-        // console.log("axiosTotalNumTripsByIdFromAPI", response.data[0].totaltrips);
-        this.setState({totalTrips: response.data[0].totaltrips})
-        // this.displayErrorOrDisplayResults()
+        this.setState({womanCyclist: response.data[0].womancyclisttrips})
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  axiosManTripsByIdFromAPI() {
+    axios.get(this.state.dataSource +`/mancyclisttrips/${this.state.bikeId}`)
+      .then( (response) => {
+        this.setState({manCyclist: response.data[0].mancyclisttrips})
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  axiosUnknownGenderTripsByIdFromAPI() {
+    axios.get(this.state.dataSource +`/unknowngendercyclisttrips/${this.state.bikeId}`)
+      .then( (response) => {
+        this.setState({genderUnknownCyclist: response.data[0].unknowngendercyclisttrips})
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  axiosTotalStationsByIdFromAPI() {
+    axios.get(this.state.dataSource +`/totalstations/${this.state.bikeId}`)
+      .then( (response) => {
+        this.setState({totalStations: response.data[0].totalstations})
+      })
+      .catch( function (error) {
+        console.log(error);
+      });
+  }
+
+  axiosTopStationByIdFromAPI() {
+    axios.get(this.state.dataSource +`/topstation/${this.state.bikeId}`)
+      .then( (response) => {
+        this.setState({topStation: response.data[0].startstationname})
       })
       .catch(function (error) {
         console.log(error);
@@ -24,5 +60,9 @@ import axios from "axios";
 
 
 export default
-  axiosTotalNumTripsByIdFromAPI;
+  axiosWomanTripsByIdFromAPI,
+  axiosManTripsByIdFromAPI,
+  axiosUnknownGenderTripsByIdFromAPI,
+  axiosTotalStationsByIdFromAPI,
+  axiosTotalStationsByIdFromAPI;
 

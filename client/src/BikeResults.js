@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+
 export default class BikeResults extends Component {
   render() {
 
@@ -68,6 +69,7 @@ export default class BikeResults extends Component {
         <p>
           <span className="citibike-data"> {percentWomanCyclist}%</span> of trips were taken by women (<span className="citibike-data">{womanCyclist}</span>) and <span className="citibike-data"> {percentManCyclist}% </span> of trips were taken by men (<span className="citibike-data">{manCyclist}</span>). The gender of the cyclist is unknown for <span className="citibike-data"> {percentGenderUnknownCyclist}% </span> of trips (<span className="citibike-data">{genderUnknownCyclist}</span>). The average Citi Bike is taken on <span className="citibike-data">22%</span> trips by women and <span className="citibike-data">69%</span> by men.
         </p>
+
 
         <form>
           <input

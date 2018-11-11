@@ -14,9 +14,10 @@ export default class About extends Component {
 
     <h2>About</h2>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet lacus nisl. Sed et tortor odio. Aliquam tortor neque, facilisis a ipsum sit amet, vestibulum suscipit eros. Nullam malesuada euismod dui, in dapibus ante. Nam tincidunt velit non ante fermentum tristique. Morbi suscipit varius felis, interdum finibus magna. Pellentesque et diam nunc.</p>
 
-    <p>Pellentesque fringilla ullamcorper tortor nec faucibus. Aenean faucibus vel ante sed imperdiet. Proin congue rutrum mi. Aliquam erat volutpat. Mauris lectus tellus, bibendum id dui at, aliquam ultricies turpis. Suspendisse potenti. Integer vel scelerisque ligula. Maecenas cursus sapien vel mi vehicula faucibus. Aenean consequat magna quis mattis posuere.</p>
+    <p>There are currently 12,000 blue Citi Bikes on the road and they've been on more than 50 million rides.</p>
+
+    <p>Citi Bike shares its ride data every month in the form of csv files. View the dataset <a href='https://www.citibikenyc.com/system-data' target="_blank" rel="noopener noreferrer">here.</a></p>
 
     <ContinueToBikeLookupButton
       clickToGoToBikeLookup={this.props.clickToGoToBikeLookup}/>

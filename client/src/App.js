@@ -1,10 +1,12 @@
 import React from "react";
 import axios from 'axios';
+// import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 import Header from "./Header";
 import Home from "./Home";
-// import About from "./About";
+import About from "./About";
 import BikeLookupPage from "./BikeLookupPage";
 import BikeResults from "./BikeResults";
+// import axiosWomanTripsByIdFromAPI from "./ApiCalls"
 
 
 export default class App extends React.Component {
@@ -252,8 +254,22 @@ export default class App extends React.Component {
     this.setState({bikeResultsPageDisplay: {'display': 'none'}});
   };
 
+
+  //  ==================================================================
+  //  Mapbox - not online yet
+  //  ==================================================================
+  // mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
+
+  //   const map = new mapboxgl.Map({
+  //     container: 'YOUR_CONTAINER_ELEMENT_ID',
+  //     style: 'mapbox://styles/mapbox/streets-v10'
+  //   });
+
+
+
   //  ==================================================================
   //  Navigation bar items. See Header.jsx
+  //  Too messy. Install React Router?
   //  ==================================================================
   homeNavItem(event) {
     this.setState({bikeId: " "});
@@ -297,10 +313,10 @@ export default class App extends React.Component {
           clickToGoToBikeLookup={this.clickToGoToBikeLookup}
           />
 
-    {/*    <About
+       <About
           parent_state={this.state}
           clickToGoToBikeLookup={this.clickToGoToBikeLookup}
-          /> */}
+          />
 
         <BikeLookupPage
           parent_state={this.state}

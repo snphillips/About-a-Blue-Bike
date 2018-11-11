@@ -1,6 +1,7 @@
 const { Router } = require('express');
-const biketripqueries = require('./biketripqueries');
 const router = Router();
+
+const biketripqueries = require('./biketripqueries');
 
 // Routing middleware: Two parameters:
 // 1) the namespace as a string. In this case, simply a /
