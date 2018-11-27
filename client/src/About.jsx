@@ -9,7 +9,7 @@ export default class About extends Component {
 
   <div
     className="about"
-    style={this.props.parent_state.aboutDisplay}
+    style={this.props.parentState.aboutDisplay}
   >
 
     <h2>About</h2>

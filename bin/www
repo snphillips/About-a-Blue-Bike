@@ -17,36 +17,30 @@ const express = require('express');
 const app = require('../app');
 
 
-
 // app.use(cors());
 
-//  From Heroku instructions
-// https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
-// *****************
-const { Client } = require('pg');
+        // Heroku
+        // https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-node-js
+        // *****************
+        const { Client } = require('pg');
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
+        const client = new Client({
+          connectionString: process.env.DATABASE_URL,
+          ssl: true,
+        });
 
-client.connect();
+        client.connect();
 
-client.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
+        client.query('SELECT * FROM citibike_rides LIMIT 1;', (err, res) => {
+          if (err) throw err;
+          for (let row of res.rows) {
+            console.log(JSON.stringify(row));
+          }
+          client.end();
+        });
+        // *****************
 
-// *****************
-// Not working here - remove when satisfied
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
+
 
 
 // Dynamic Port Binding

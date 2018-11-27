@@ -10,7 +10,7 @@ export default class BikeSearchForm extends Component {
     // chooses a bike that doesn't have a ride history. View index.css
     // to see the no-trips-bike-id class.
     let inputErrorClass
-    if (this.props.parent_state.bikeIdValid === false) {
+    if (this.props.parentState.bikeIdValid === false) {
       inputErrorClass = "no-trips-bike-id"
     } else { inputErrorClass =" "}
 
@@ -29,10 +29,10 @@ export default class BikeSearchForm extends Component {
               type="number"
               min="14529"
               max="33699"
-              value={this.props.parent_state.bikeId}
+              value={this.props.parentState.bikeId}
               onChange={this.props.handleChange}
               />
-            <ErrorMessage parent_state={this.props.parent_state} />
+            <ErrorMessage parentState={this.props.parentState} />
           </label>
 
 

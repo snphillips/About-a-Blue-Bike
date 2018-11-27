@@ -20,7 +20,6 @@ export default class ReactSpinner extends React.Component {
           sizeUnit={"px"}
           size={32}
           color={'#123abc'}
-          // color={'#1884c7'}
           loading={this.props.loading}
         />
       </span>

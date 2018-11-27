@@ -9,7 +9,7 @@ export default class Home extends Component {
 
   <div
     className="home"
-    style={this.props.parent_state.homeDisplay} >
+    style={this.props.parentState.homeDisplay} >
 
     <h2>Home</h2>
 

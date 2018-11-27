@@ -9,7 +9,7 @@ export default class ErrorMessage extends Component {
     // Then, render the script in the return.
 
     let error_message
-    if (this.props.parent_state.bikeIdValid === false) {
+    if (this.props.parentState.bikeIdValid === false) {
       error_message =
         <div className="error_message">
           No trips for that bicycle.<br />

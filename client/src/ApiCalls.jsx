@@ -59,10 +59,11 @@ import axios from "axios";
 
 
 
-export default
+export default {
   axiosWomanTripsByIdFromAPI,
   axiosManTripsByIdFromAPI,
   axiosUnknownGenderTripsByIdFromAPI,
   axiosTotalStationsByIdFromAPI,
   axiosTotalStationsByIdFromAPI;
+}
 

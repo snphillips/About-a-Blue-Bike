@@ -1,12 +1,12 @@
 import React from "react";
 import axios from 'axios';
-// import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
+import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 import Header from "./Header";
 import Home from "./Home";
 import About from "./About";
 import BikeLookupPage from "./BikeLookupPage";
 import BikeResults from "./BikeResults";
-// import axiosWomanTripsByIdFromAPI from "./ApiCalls"
+// import axiosWomanTripsByIdFromAPI from "./ApiCalls";
 
 
 export default class App extends React.Component {
@@ -56,7 +56,7 @@ export default class App extends React.Component {
   }
   // *************************************************************
   // End of constructor
-  // ************************************************************
+  // *************************************************************
 
   //  ============================================================
   //  TODO: fix this
@@ -75,9 +75,9 @@ export default class App extends React.Component {
     }
 
 
-  //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   //  The API calls from the client.
-  //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  //  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
   // The result is limited by query max set in server.
   // To adjust, visit biketripqueries.js in the Router folder
@@ -269,7 +269,7 @@ export default class App extends React.Component {
 
   //  ==================================================================
   //  Navigation bar items. See Header.jsx
-  //  Too messy. Install React Router?
+  //  Too crowded? Install React Router?
   //  ==================================================================
   homeNavItem(event) {
     this.setState({bikeId: " "});
@@ -303,23 +303,23 @@ export default class App extends React.Component {
       <div>
 
         <Header
-          parent_state={this.state}
+          parentState={this.state}
           homeNavItem={this.homeNavItem}
           aboutNavItem={this.aboutNavItem}
           lookupNavItem={this.lookupNavItem} />
 
         <Home
-          parent_state={this.state}
+          parentState={this.state}
           clickToGoToBikeLookup={this.clickToGoToBikeLookup}
           />
 
        <About
-          parent_state={this.state}
+          parentState={this.state}
           clickToGoToBikeLookup={this.clickToGoToBikeLookup}
           />
 
         <BikeLookupPage
-          parent_state={this.state}
+          parentState={this.state}
           bikeIdValid={this.state.bikeIdValid}
           loading={this.state.loading}
           showErrorMessage={this.state.errorMessageDisplay}
@@ -330,7 +330,7 @@ export default class App extends React.Component {
           />
 
         <BikeResults
-          parent_state={this.state}
+          parentState={this.state}
           clickToGoToBikeLookup={this.clickToGoToBikeLookup}
           />
 

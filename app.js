@@ -10,12 +10,9 @@ const app = express();
 
 const { DATABASE_URL } = process.env;
 
-//  body-parser is an npm plugin for Express that we need to use in order
-//  to be able to capture data coming via a form. Express used to have this
-//  functionality built-in but in order to achieve easier maintenance
-//  body-parser has been removed from the core of Express. body-parse parses
-//  incoming request bodies in a middleware before your handlers, available
-//  under the req.body property. (makes your forms work)
+//  body-parser is an npm plugin to be able to capture data coming via a form.
+//  body-parse parses incoming request bodies in a middleware before your handlers,
+//  available under the req.body property. (TLDR: makes your forms work)
 const bodyParser = require('body-parser');
 
 // All your routes are in there

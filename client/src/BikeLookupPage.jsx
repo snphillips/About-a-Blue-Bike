@@ -11,7 +11,7 @@ export default class BikeLookupPage extends Component {
 
     <div
       className="bikeLookup"
-      style={this.props.parent_state.bikeLookupPageDisplay}
+      style={this.props.parentState.bikeLookupPageDisplay}
       >
 
       <h2>Bicycle Lookup</h2>
@@ -22,13 +22,13 @@ export default class BikeLookupPage extends Component {
       <p>You can also press the random bike id generator button.</p>
 
       <AutoBikeIdPick
-        parent_state={this.props.parent_state}
+        parentState={this.props.parentState}
         randomSubmit={this.props.randomSubmit}
         randomBikeId={this.props.randomBikeId}
       />
 
       <BikeSearchForm
-        parent_state={this.props.parent_state}
+        parentState={this.props.parentState}
         loading={this.props.loading}
         bikeIdValid={this.props.bikeIdValid}
         handleChange={this.props.handleChange}

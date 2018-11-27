@@ -6,28 +6,28 @@ export default class BikeResults extends Component {
 
   // Some variables to make this page easier to read.
   // It was getting too crowded down below with all these this.props...
-  const redBikeId = this.props.parent_state.bikeId
-  const totalTrips = this.props.parent_state.totalTrips
-  const totalTime = this.props.parent_state.totalTime
-  const totalDistance = this.props.parent_state.totalDistance
-  const avgTripDurationById = this.props.parent_state.avgTripDurationById
-  const womanCyclist = this.props.parent_state.womanCyclist
-  const manCyclist = this.props.parent_state.manCyclist
-  const genderUnknownCyclist = this.props.parent_state.genderUnknownCyclist
+  const redBikeId = this.props.parentState.bikeId
+  const totalTrips = this.props.parentState.totalTrips
+  const totalTime = this.props.parentState.totalTime
+  const totalDistance = this.props.parentState.totalDistance
+  const avgTripDurationById = this.props.parentState.avgTripDurationById
+  const womanCyclist = this.props.parentState.womanCyclist
+  const manCyclist = this.props.parentState.manCyclist
+  const genderUnknownCyclist = this.props.parentState.genderUnknownCyclist
   const percentWomanCyclist = Math.round(womanCyclist / totalTrips * 100)
   const percentManCyclist = Math.round(manCyclist / totalTrips * 100)
   const percentGenderUnknownCyclist = Math.round(genderUnknownCyclist / totalTrips * 100)
-  const firstRideDate = this.props.parent_state.firstRideDate
-  const firstRideTime = this.props.parent_state.firstRideTime
-  const lastRideDate = this.props.parent_state.lastRideDate
-  const lastRideTime = this.props.parent_state.lastRideTime
-  const totalStations = this.props.parent_state.totalStations
-  const topStation = this.props.parent_state.topStation
+  const firstRideDate = this.props.parentState.firstRideDate
+  const firstRideTime = this.props.parentState.firstRideTime
+  const lastRideDate = this.props.parentState.lastRideDate
+  const lastRideTime = this.props.parentState.lastRideTime
+  const totalStations = this.props.parentState.totalStations
+  const topStation = this.props.parentState.topStation
 
 
     return (
       <div
-        style={this.props.parent_state.bikeResultsPageDisplay}
+        style={this.props.parentState.bikeResultsPageDisplay}
         >
 
         <h2>
