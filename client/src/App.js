@@ -14,8 +14,8 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      // dataSource: "https://bluebikes.herokuapp.com", // what is serving the data?
-      dataSource: "http://localhost:4000", // what is serving the data?
+      dataSource: "https://bluebikes.herokuapp.com", // what is serving the data?
+      // dataSource: "http://localhost:4000", // what is serving the data?
       bikeId: "bikeId_initial_state",
       totalTrips: "totalTrips_state",
       womanCyclist: "womanCyclist_state",
