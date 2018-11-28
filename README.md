@@ -39,4 +39,7 @@ I created a simple, clean user-friendly interface so that users feel welcome and
 - server hosted with Surge
 
 ## Change Log
--To avoid excessive hosting fees, I had to limit my table to contain 2018 data instead of the entire time CitiBike has been active. My current Heroku plan allows me to have 10, 000 000 lines. 
+-To avoid excessive hosting fees, I had to limit my table to contain 2018 data instead of the entire time CitiBike has been active. My current Heroku plan allows me to have 10, 000 000 lines.
+
+## To Do
+- Add generated map of stations bike has visited. Mapbox? 
