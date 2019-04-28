@@ -58,13 +58,13 @@ Navigation
   cursor: pointer;
 }
 
-#nav-item {
+.nav-item {
   display: flex;
   margin: 0px 15px 0px 0px;
   overflow: hidden;
 }
 
-#nav-item:hover {
+.nav-item:hover {
   color: #f15641;
 }
 
@@ -184,7 +184,7 @@ Classes & IDs
   max-width: 300px;
 }
 
-/*The spinner. This is an nmp package.*/
+/*The spinner. This is an npm package.*/
 .sweet-loading {
   margin: 10px;
   display: inline-block;

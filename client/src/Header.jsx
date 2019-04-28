@@ -7,22 +7,22 @@ export default class Header extends Component {
   render() {
     return (
 
-  <div
-    className="Header">
+      <div className="Header">
 
-  <div>
-  <h1> About a Blue Bike </h1>
-    <nav>
-      <ul id="topnav">
-        <li id="nav-item" onClick={this.props.homeNavItem}>Home</li>
-        <li id="nav-item" onClick={this.props.lookupNavItem}>Bicycle Lookup</li>
-      </ul>
-    </nav>
-  </div>
+        <div>
+        <h1> About a Blue Bike </h1>
+          <nav>
+            <ul id="topnav">
+              <li class="nav-item" id="home-nav-item" onClick={this.props.homeNavItem}>Home</li>
+              <li class="nav-item" id="lookup-nav-item" onClick={this.props.lookupNavItem}>Bicycle Lookup</li>
+            </ul>
+          </nav>
+        </div>
 
-  <hr/>
+        <hr/>
 
-  </div>
+      </div>
+
     );
   }
 }
