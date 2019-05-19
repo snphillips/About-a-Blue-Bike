@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
+// import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js';
 import Header from "./Header";
 import Home from "./Home";
 import About from "./About";
