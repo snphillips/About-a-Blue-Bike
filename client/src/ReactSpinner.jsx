@@ -1,5 +1,9 @@
+// This is the spinner that displays while the user
+// waits for results.
+
+
 import React from 'react';
-import { css } from 'react-emotion';
+import { css } from '@emotion/core';
 //react-spinners is an npm package
 import { SyncLoader } from 'react-spinners';
 

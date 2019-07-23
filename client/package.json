@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "cors": "^2.8.5",
-    "csv-parse": "^2.5.0",
-    "dotenv": "^6.2.0",
+    "csv-parse": "^4.4.3",
+    "dotenv": "^8.0.0",
     "plugins": [
       "emotion"
     ],
@@ -15,9 +15,9 @@
     ],
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "react-spinners": "^0.4.8"
+    "react-spinners": "^0.5.13"
   },
   "scripts": {
     "start": "react-scripts start",
