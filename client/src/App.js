@@ -14,8 +14,8 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      dataSource: "https://bluebikes.herokuapp.com", // what is serving the data?
-      // dataSource: "http://localhost:4000", // what is serving the data?
+      dataSource: "https://bluebikes.herokuapp.com", // when you serve the data from Heroku
+      // dataSource: "http://localhost:4000", // when you serve the data locally
       bikeId: "bikeId_initial_state",
       totalTrips: "totalTrips_state",
       womanCyclist: "womanCyclist_state",
@@ -60,8 +60,8 @@ export default class App extends React.Component {
   // *************************************************************
 
   //  ============================================================
-  //  TODO: fix this
-  //  This changes the data source depending on whether the site
+  //  TODO: make this work
+  //  Ideally this changes the data source depending on whether the site
   //  is in production or development.
   //  ============================================================
     whatIsDataHost(){
@@ -71,8 +71,8 @@ export default class App extends React.Component {
     //     this.setState({dataSource: "https://bluebikes.herokuapp.com"})
       // }
 
-      console.log("Hi from whatisHost process.env.NODE_ENV is:", process.env.NODE_ENV)
-      console.log("Hi from  whatisHost this.state.dataSource is:", this.state.dataSource)
+      // console.log("Hi from whatisHost process.env.NODE_ENV is:", process.env.NODE_ENV)
+      // console.log("Hi from whatisHost this.state.dataSource is:", this.state.dataSource)
     }
 
 
@@ -93,7 +93,7 @@ export default class App extends React.Component {
   }
 
  // Some of the SIMPLE QUERIES all in one place
- // Here is where we check if the user inputed a bikeId with a trip history.
+ // Here is also where we check if the user inputed a bikeId with a trip history.
  // If user chooses a dud bikeId, they are prompted to choose an other number.
  // Also, the loading spinner is enabled & dissabled here
   axiosSimpleQueriesByIdFromAPI() {

@@ -1,20 +1,24 @@
-/*Site Colors
-very dark blue: #042862
-dark blue: #052c6c;
-light blue: #1c98e5;
-bike illustration blue: #1884c7;
-border-color: #063c93;
-white: #fff;
-light light blue: #d2e7e8;
-light red: #f15641;
-red: #ed2e15;
-dark red: #bf220d;
-*/
+/*=========================
+CSS Variables
+==========================*/
+:root {
+  --background-color: #042862; /* dark blue */
+  --heading-color: #d2e7e8; /* powder blue */
+  --border-color: #063c93; /* royal blue */
+  --button-color-hover: #052c6c; /* blue */
+  --data-color: #bcdbdc;
+  --button-link-color: #1c98e5; /* light blue */
+  --highlight-color: #f15641; /* light red */
+  /*--bike-illustration-blue: #1884c7;*/
+}
 
+/*=========================
+Main
+==========================*/
 body {
   margin: 0 auto;
   padding: 0 20px;
-  background-color: #042862;
+  background-color: var(--background-color, #042862);
   color: rgb(255,255,255);
   max-width: 900px;
   font-size: 120%;
@@ -22,9 +26,9 @@ body {
   font-family: 'Tajawal', sans-serif;
 }
 
-/* The title of the app*/
+/* The title of the app */
 h1 {
-  color: #d2e7e8;
+  color: var(--heading-color, #d2e7e8);
   padding: 0 0 10px 0;
   font-size: 150%;
   font-family: 'Chewy', cursive;
@@ -32,21 +36,22 @@ h1 {
 
 /* Bicycle id: */
 h2 {
-  color: #d2e7e8;
+  color: var(--heading-color, #d2e7e8);
   font-size: 120%;
 }
 
-/* The headings on the results page*/
+/* The headings on the results page */
 h3 {
-  color: #d2e7e8;
+  color: var(--heading-color, #d2e7e8);
   font-size: 110%;
   margin-top: 30px;
   margin-bottom: -15px;
-  border-bottom: 3px solid #063c93;
+  border-bottom: 3px solid var(--border-button-color, #063c93);
 }
-/*===================================================
+
+/*=========================
 Navigation
-===================================================*/
+==========================*/
 #topnav {
   display: flex;
   /*list-style-type: none;*/
@@ -58,68 +63,64 @@ Navigation
   cursor: pointer;
 }
 
-.nav-item {
+li.nav-item {
   display: flex;
   margin: 0px 15px 0px 0px;
   overflow: hidden;
 }
 
-.nav-item:hover {
-  color: #f15641;
+li.nav-item:hover {
+  color: var(--nav-hover, #f15641);
 }
 
 hr {
-  border-top: 4px solid #063c93;
-  border-color: #063c93;
+  border-top: 4px solid var(--border-button-color, #063c93);
+  border-color: var(--border-button-color, #063c93);
 }
 
-/*===================================================
+/*==========================
 Links
-===================================================*/
+===========================*/
 a {
   text-decoration: none;
-  color: #1c98e5;
+  color: var(--button-link-color, #1c98e5);
 }
 
-/* mouse over link */
 a:hover {
-  color: #d2e7e8;
+  color: var(--heading-color, #d2e7e8);
 }
 
-/* selected link */
 a:active {
-  color: #c2dfe6;
+  color: var(--heading-color, #d2e7e8);
 }
 
-/*===================================================
+/*==========================
 Buttons & Fields
-===================================================*/
+===========================*/
 .button {
-  background-color: #1c98e5;
+  background-color: var(--nav-button-color, #1c98e5);
   border: none;
   border-radius: 4px;
   color: white;
-  padding: 10px 24px;
-  text-align: center;
-  text-decoration: none;
+  cursor: pointer;
   display: inline-block;
   font-size: 20px;
+  padding: 10px 24px;
   margin: 10px 0px 20px 0px;
-  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 }
 
 .button:hover {
-  background-color: #063c93;
+  background-color: var(--border-color, #063c93);
 }
 
 input[type=number], select {
-  /*color: #bf220d;*/
   font-size: 18px;
   /*width: 25%;*/
   padding: 10px 12px;
   margin: 3px 1px;
   display: inline-block;
-  /*border: 0px solid #ccc;*/
   border-radius: 4px;
   box-sizing: border-box;
   width: 109px;
@@ -127,38 +128,32 @@ input[type=number], select {
 
 form {
   margin-top: -10px;
-  /*padding-right: 10px;*/
-  /*padding-top: -20px;*/
 }
 
-/*This class is added to the input if user chooses a bike without a ride history.*/
+/* This class is added to the input if user chooses a bike without a ride history. */
 .no-trips-bike-id {
-  border: 3px solid #f15641;
+  border: 3px solid var(--highlight-color, #f15641);
 }
 
-/* This is when user chooses a dud bike  */
+/* When user chooses a dud bike  */
 .error_message {
   display: inline-block;
-  color: #f15641;
+  color: var(--highlight-color, #f15641);
   font-size:16px;
   margin-left: 10px;
-  /*border-top: 10px;*/
 }
 
 
-/*===================================================
+/*===========================
 Classes & IDs
-===================================================*/
+============================*/
 .citibike-data {
   font-size: 115%;
-  /*color: #d2e7e8;*/
-  color: #bcdbdc;
-  /*font-style: italic;*/
+  color: var(--data-color, #bcdbdc);
 }
 
 .big-bike-id {
-/*  font-size: 110%;*/
-  color: #f15641;
+  color: var(--highlight-color, #f15641);
 }
 
 #mainpagebluebike {
@@ -168,7 +163,7 @@ Classes & IDs
   max-width: 600px;
 }
 
-#lookupbluebike{
+#lookupbluebike {
   width: 100%;
   height: auto;
   max-width: 400px;
@@ -184,23 +179,22 @@ Classes & IDs
   max-width: 300px;
 }
 
-/*The spinner. This is an npm package.*/
+/*The spinner. This is an npm package called React Spinners.*/
 .sweet-loading {
   margin: 10px;
   display: inline-block;
 }
 
 
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-
-/*Small & Medium devices (768px and smaller) media query*/
+/* Small & Medium devices (768px and smaller) media query */
 @media (max-width: 768px) {
 
-  /* This overrides the hideous iOS default button & form style*/
+  /* This overrides the hideous iOS default button & form style */
   textarea,
   input.text,
   input[type="text"],
@@ -216,7 +210,6 @@ Classes & IDs
   }
 
   span.big-bike-id {
-
     font-size: 130%;
     font-weight: bold;
   }
@@ -228,8 +221,3 @@ Classes & IDs
 
 
 }
-
-
-
-
-
