@@ -5,6 +5,7 @@ _About a Blue Bike_ is a tool to look up statistics on individual bicycles in Ne
 Every Citibike has a unique identification number. Users of _About a Blue Bike_ input a bike id into a field and are presented with a narrative that includes the length of time that bike has been on the road, how many miles the bike had travelled and which docking stations it has visited.
 
 View the website here: https://aboutabluebike.surge.sh/
+**NOTE I RECENTLY DISCONNECTED THE DATABASE TO SAVE ON HOSTING FEES-- THE APP WILL NOT WORK RIGHT NOW**
 
 <img src="https://i.imgur.com/A1J5MxP.jpg" width="500" alt="screengrab of app">
 
