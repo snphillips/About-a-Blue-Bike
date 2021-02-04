@@ -1,6 +1,6 @@
 # About a Blue Bike
 
-**NOTE I RECENTLY DISCONNECTED THE DATABASE TO SAVE ON HOSTING FEES-- THE APP DOES NOT WORK RIGHT NOW**
+**NOTE: I DISCONNECTED THE DATABASE TO SAVE ON HOSTING FEES-- THE APP DOES NOT WORK RIGHT NOW**
 
 _About a Blue Bike_ is a tool to look up statistics on individual bicycles in New York City's Citibike bike share system. 
 
